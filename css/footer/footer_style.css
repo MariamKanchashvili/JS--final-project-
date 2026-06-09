@@ -1,0 +1,121 @@
+@import url(../font.scss);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+.footer {
+  background-color: rgb(131, 210, 131);
+  display: flex;
+  justify-content: space-around;
+  gap: 50px;
+  padding: 30px;
+  font-family: monospace;
+}
+.footer__header {
+  font-size: 50px;
+  font-family: monospace;
+}
+.footer__side1--contact {
+  font-size: 20px;
+  font-weight: 600;
+}
+.footer__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
+}
+.footer__form-row {
+  display: flex;
+  gap: 20px;
+}
+.footer__form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.footer__form-item label {
+  font-family: monospace;
+  font-size: 14px;
+}
+.footer__form-item input {
+  height: 45px;
+  padding: 0 15px;
+  font-size: 14px;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgb(131, 210, 131);
+  transition: 0.3s;
+}
+.footer__form-item input:hover, .footer__form-item input:focus {
+  border: 2px solid white;
+  outline: none;
+}
+.footer__form-item textarea {
+  min-height: 120px;
+  padding: 12px 15px;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgb(131, 210, 131);
+  resize: vertical;
+  transition: 0.3s;
+}
+.footer__form-item textarea:hover, .footer__form-item textarea:focus {
+  border: 2px solid white;
+  outline: none;
+}
+.footer__form-item--message {
+  width: 100%;
+}
+.footer__btn {
+  height: 45px;
+  background-color: rgb(229, 200, 112);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.footer__btn:hover {
+  transform: translateY(-2px);
+  border: 2px solid white;
+  font-weight: 500;
+}
+.footer__map {
+  width: 120%;
+  max-width: 400px;
+  margin-top: 20px;
+}
+.footer__map iframe {
+  width: 80%;
+  height: 100%;
+  min-height: 200px;
+}
+
+@media screen and (max-width: 935px) {
+  .footer {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 480px) {
+  .footer__form-row {
+    flex-direction: column;
+  }
+  .footer__map {
+    width: 80%;
+  }
+  .footer__header {
+    font-size: 35px;
+  }
+  .footer__side1--contact {
+    font-size: 17px;
+  }
+}/*# sourceMappingURL=footer_style.css.map */
