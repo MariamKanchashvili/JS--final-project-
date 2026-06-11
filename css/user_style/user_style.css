@@ -1,0 +1,215 @@
+@import url(../font.scss);
+@import url(../variables_style/variables_style.scss);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+.user_page {
+  background-color: rgb(131, 210, 131);
+  display: flex;
+  flex-direction: column;
+  padding-left: 30%;
+  font-family: monospace;
+  font-size: 17px;
+}
+
+.currentUser-form {
+  max-width: 500px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 120px 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  margin: 20px;
+  gap: 10px;
+  border-bottom: 2px solid black;
+  padding: 25px;
+}
+.currentUser-form input {
+  height: 4vh;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.gender-input {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.verify_title {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 30px;
+}
+.verify_title span {
+  font-size: 20px;
+}
+
+#verify-id {
+  margin: 15px;
+  display: flex;
+  max-width: 500px;
+  gap: 15px;
+  border-bottom: 2px solid black;
+  padding: 25px;
+}
+#verify-id input {
+  height: 5vh;
+  min-width: 450px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#verifyBtn {
+  min-width: 150px;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 14px;
+}
+#verifyBtn:hover {
+  font-weight: bold;
+  background-color: #FFB89A;
+  color: white;
+}
+
+.updateData_title {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+.updateData_title span {
+  font-size: 20px;
+}
+
+#updateData-form {
+  max-width: 500px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 120px 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  margin: 20px;
+  gap: 10px;
+  border-bottom: 2px solid black;
+  padding: 25px;
+}
+#updateData-form input {
+  height: 4vh;
+  border-radius: 15px;
+  padding: 10px;
+}
+#updateData-form .updateData_Btn {
+  border-radius: 10px;
+  height: 4vh;
+  font-size: 14px;
+  font-family: monospace;
+}
+#updateData-form .updateData_Btn:hover {
+  font-weight: bold;
+  background-color: #FFB89A;
+  color: white;
+}
+
+.recoverPass_title {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+.recoverPass_title span {
+  font-size: 20px;
+}
+
+#recoverPass-id {
+  display: flex;
+  gap: 15px;
+  max-width: 500px;
+  margin: 20px;
+}
+#recoverPass-id input {
+  min-width: 450px;
+  height: 4vh;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#recoverPassBtn {
+  min-width: 150px;
+  border-radius: 10px;
+  height: 4vh;
+  padding: 15px;
+  display: flex;
+  font-size: 14px;
+  font-family: monospace;
+  align-items: center;
+}
+#recoverPassBtn:hover {
+  font-weight: bold;
+  background-color: #FFB89A;
+  color: white;
+}
+
+#changePass-id {
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 20px;
+}
+#changePass-id input {
+  border-radius: 10px;
+  height: 4vh;
+  padding: 15px;
+}
+
+#changePassBtn {
+  min-width: 160px;
+  border-radius: 10px;
+  height: 4vh;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 14px;
+  font-family: monospace;
+}
+#changePassBtn:hover {
+  font-weight: bold;
+  background-color: #FFB89A;
+  color: white;
+}
+
+#logotBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.gender-input input[type=radio]:checked:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 15px;
+  top: 9px;
+  left: -1px;
+  position: relative;
+  background-color: #FFB89A;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid #FFB89A;
+}/*# sourceMappingURL=user_style.css.map */

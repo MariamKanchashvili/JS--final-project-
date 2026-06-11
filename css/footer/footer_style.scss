@@ -5,15 +5,8 @@
     text-decoration: none;
     list-style: none;
 }
-@import url(../font.scss);
-
-$navigation-font:"letter/designer";
-$headers-font:"spooky";
-$text-font:"montserrat";
-$header-size:50px;
-$text-size:14px;
-$border-radius:8px;
-$background-color:rgb(131, 210, 131);
+@use "../variables_style/variables_style.scss";
+@use "../font.scss";
 .footer {
     background-color: $background-color;
     display: flex;
@@ -103,7 +96,7 @@ $background-color:rgb(131, 210, 131);
 
     &__btn {
         height: 45px;
-         background-color: rgb(229, 200, 112);
+         background-color:#FFB89A;
         border: none;
         border-radius: 15px;
 

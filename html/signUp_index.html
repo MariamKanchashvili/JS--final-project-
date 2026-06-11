@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="../css/signUp_style/signUp_style.css">
+</head>
+<body>
+    <!-- sign up -->
+    
+    <div class="signUp_formbox">
+      <div class="signUp_title">
+     <h2>Sign  </h2>
+     <span>Up</span>
+      </div>
+ <form id="signup-form" class="signUp_form">
+ 
+    <label for="signup-firstname"> Name</label>
+ <input type="text" id="signup-firstname" placeholder="your name" name="firstName">
+    <label for="signup-lastname"> Lastname</label>
+ <input type="text" id="signup-lastname" placeholder="your lastname" name="lastName">
+<label for="signup-age"> Age</label>
+ <input type="number" id="signup-age" placeholder="your age" name="age">
+<label for="signup-email"> Email</label>
+ <input type="email" id="signup-email" placeholder="your email" name="email">
+<label for="signup-password"> Password</label>
+ <input type="text" id="signup-password" placeholder="your password" name="password">
+<label for="signup-address"> Address</label>
+ <input type="text" id="signup-address" placeholder="your address" name="address">
+<label for="signup-phone"> Phone</label>
+ <input type="text" id="signup-phone" placeholder="your phone (including country code)" name="phone">
+<label for="signup-zipcode"> Zipcode</label>
+ <input type="text"  id="signup-zipcode" placeholder="zipcode" name="zipcode">
+<label for="signup-avatar"> Avatar</label>
+ <input type="text"  id="signup-avatar" placeholder="avatar" name="avatar">
+ 
+<label class="gender" for="gender"> Gender</label>
+<div class="gender-input">
+ <input type="radio"  value="MALE"  name="gender" class="gender" id="gender">Male
+ <input type="radio"  value="FEMALE"   name="gender"class="gender">Female
+ <input type="radio"  value="OTHER"  name="gender"class="gender">Other
+</div>
+<br>
+<button  class="signUp_Btn"   type="submit">Sign up</button>
+ </form>
+</div>
+ <script src="../js/signUp_script.js"></script>
+</body>
+</html>

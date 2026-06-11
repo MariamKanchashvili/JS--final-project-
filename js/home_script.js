@@ -46,7 +46,7 @@ function renderProducts(products) {
         const isButtonDisabled = isOutOfStock ? 'disabled' : '';
         return `
             <div class="products__card"> 
-                <img src="${product.thumbnail}" class="products__image"> 
+                <img src="${product.thumbnail}" class="products__image" referrerpolicy="no-referrer"> 
                 <h3>${product.title}</h3> 
                 <p class="products__card-brand">${product.brand.toUpperCase()}</p> 
                 <p>${product.category.name}</p> 

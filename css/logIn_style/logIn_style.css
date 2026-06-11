@@ -1,0 +1,94 @@
+@import url(../font.scss);
+@import url(../variables_style/variables_style.scss);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+.signIn_formbox {
+  max-width: 500px;
+  margin: 280px auto;
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+  background-color: rgb(131, 210, 131);
+  padding: 15px;
+}
+
+.signIn_title {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+.signIn_title span {
+  font-size: 20px;
+}
+
+.signIn_form {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  grid-template-areas: "email-key email-value" "password-key password-value" "empty submit" "helpBtn helpBtn ";
+  gap: 10px;
+  margin: 40px 0;
+  align-items: center;
+  justify-content: center;
+}
+.signIn_form input {
+  height: 5vh;
+  border-radius: 15px;
+  padding-left: 10px;
+  font-style: italic;
+}
+
+.email-input {
+  grid-area: email-value;
+}
+
+.email-label {
+  grid-area: email-key;
+}
+
+.password-input {
+  grid-area: password-value;
+}
+
+.password-label {
+  grid-area: password-key;
+}
+
+.form-submit {
+  grid-area: submit;
+  height: 5vh;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: monospace;
+}
+.form-submit:hover {
+  font-weight: bold;
+}
+
+.signIn__help {
+  grid-area: helpBtn;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.helpBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(37, 147, 191);
+}
+.helpBtn:hover {
+  font-weight: bold;
+}/*# sourceMappingURL=logIn_style.css.map */

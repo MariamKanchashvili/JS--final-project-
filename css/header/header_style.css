@@ -1,4 +1,5 @@
 @import url(../font.scss);
+@import url(../variables_style/variables_style.scss);
 * {
   margin: 0;
   padding: 0;

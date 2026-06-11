@@ -1,0 +1,76 @@
+@import url(../font.scss);
+@import url(../variables_style/variables_style.scss);
+@font-face {
+  font-family: "letter/designer";
+  src: url(../assets/fonts/Letter\ Designer.otf);
+}
+@font-face {
+  font-family: "saturday";
+  src: url(../assets/fonts/Saturday.otf);
+}
+@font-face {
+  font-family: "spooky";
+  src: url(../assets/fonts/Spooky\ Season.otf);
+}
+@font-face {
+  font-family: "montserrat";
+  src: url(../assets/fonts/montserrat/static/Montserrat-Black.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+.signUp_formbox {
+  max-width: 500px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+}
+
+.signUp_title {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUp_form {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+}
+.signUp_form input {
+  height: 5vh;
+  border-radius: 15px;
+  padding-left: 10px;
+  font-style: italic;
+}
+
+.gender-input {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.gender-input {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 15px;
+}
+
+.signUp_Btn {
+  height: 5vh;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: monospace;
+}
+.signUp_Btn:hover {
+  font-weight: bold;
+}/*# sourceMappingURL=signUp_style.css.map */

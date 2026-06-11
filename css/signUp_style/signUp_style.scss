@@ -1,0 +1,73 @@
+@import "../font";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+@import url(../font.scss);
+@import url(../variables_style/variables_style.scss);
+$navigation-font:"letter/designer";
+$headers-font:"spooky";
+$text-font:"montserrat";
+$header-size:50px;
+$text-size:14px;
+$border-radius:8px;
+$background-color:rgb(131, 210, 131);
+$input-color:#FFB89A;
+
+.signUp_formbox{
+    max-width: 500px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+        font-family: monospace;
+ 
+   
+}
+
+.signUp_title{
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.signUp_form{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 10px;
+    
+    input{
+        height: 5vh;
+        border-radius: 15px;
+        padding-left: 10px;
+        font-style: italic;
+    }
+   
+}
+.gender-input{
+    display: flex;
+   justify-content: space-between;
+    gap: 15px;
+}
+.gender-input{
+    display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+    gap: 15px;
+}
+.signUp_Btn{
+    height: 5vh;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: monospace;
+    &:hover{
+        font-weight: bold;
+    }
+    
+}

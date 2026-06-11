@@ -168,10 +168,11 @@ function productsPrint(product){
             </div>
 
             <!-- კალათის ღილაკი -->
-            <button
-                class="cart"
-                ${isButtonDisabled}
-            >
+          <button
+    class="cart"
+    ${isButtonDisabled}
+    onclick="addToCart('${product._id}')"
+>
 
                 ${
                     isOutOfStock
@@ -180,6 +181,7 @@ function productsPrint(product){
                 }
 
             </button>
+            
 
         </div>
 
@@ -525,3 +527,14 @@ searchBtnAside.addEventListener("click",()=>{
     console.log(sortDirection)
 })
 
+window.addEventListener("DOMContentLoaded", () => {
+    const token = sessionStorage.getItem("accessToken")
+    if (token) {
+        const cartBtn = document.createElement("button")
+        cartBtn.textContent = "Go to Cart"
+        cartBtn.addEventListener("click", () => {
+            window.location.href = "cart_index.html"
+        })
+        document.querySelector(".header__auth").appendChild(cartBtn)
+    }
+})
