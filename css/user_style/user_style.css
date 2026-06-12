@@ -15,6 +15,8 @@
   padding-left: 30%;
   font-family: monospace;
   font-size: 17px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 .currentUser-form {
@@ -139,7 +141,7 @@
 }
 #recoverPass-id input {
   min-width: 450px;
-  height: 4vh;
+  height: 5vh;
   border-radius: 10px;
   padding: 10px;
 }
@@ -147,8 +149,8 @@
 #recoverPassBtn {
   min-width: 150px;
   border-radius: 10px;
-  height: 4vh;
-  padding: 15px;
+  height: 5vh;
+  padding: 20px;
   display: flex;
   font-size: 14px;
   font-family: monospace;

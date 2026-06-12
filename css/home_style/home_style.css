@@ -67,6 +67,8 @@
   align-items: center;
   gap: 20px;
   padding: 30px;
+  background-color: rgb(131, 210, 131);
+  border: 7px solid black;
 }
 .products__container {
   overflow: hidden;
@@ -76,15 +78,15 @@
 }
 .products__track {
   display: flex;
-  transition: 0.5s ease-in-out;
-  flex-shrink: 0;
-  margin-left: -10px;
+  transition: transform 0.5s ease;
+  will-change: transform;
 }
 .products__card {
   flex: 0 0 250px;
-  font-family: "letter/designer";
-  border: 1px solid #ddd;
+  font-family: sans-serif;
+  border: 3px solid black;
   border-radius: 10px;
+  background-color: white;
   padding: 15px;
   margin: 10px;
   text-align: center;
@@ -94,6 +96,7 @@
   height: 200px;
   -o-object-fit: contain;
      object-fit: contain;
+  max-width: 250px;
 }
 .products__title {
   margin-top: 10px;
@@ -148,7 +151,7 @@
 }
 
 .in-stock {
-  color: rgb(11, 241, 22);
+  color: rgb(22, 134, 25);
   font-weight: bold;
 }
 
@@ -158,14 +161,21 @@
   opacity: 0.6;
 }
 
+footer {
+  border: 3px solid black;
+}
+
 @media screen and (max-width: 768px) {
   .products__container {
     max-width: 100%; /* კონტეინერი იკავებს მთელ ეკრანს */
   }
   .products__card {
-    flex: 0 0 100%; /* თითო ბარათი დაიკავებს ეკრანის 100%-ს (მხოლოდ 1 გამოჩნდება) */
+    flex: 0 0 111%; /* თითო ბარათი დაიკავებს ეკრანის 100%-ს (მხოლოდ 1 გამოჩნდება) */
     max-width: 320px; /* ამაზე მეტად აღარ დაპატარავდება */
     margin: 0 auto; /* ცენტრში მოაქცევს ბარათს */
+  }
+  .no-stock {
+    right: 3%;
   }
 }
 @media screen and (max-width: 471px) {

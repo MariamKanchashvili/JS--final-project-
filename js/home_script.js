@@ -1,12 +1,14 @@
-let products = document.querySelector(".products__container")
 const track = document.querySelector(".products__track");
-const nextBtn = document.querySelector(".products__btn--next");
-const prevBtn = document.querySelector(".products__btn--prev");
 
 let currentSlide = 0;
 const visibleCards = 5;
-const cardWidth = 270; 
+const cardWidth = 270;
 
+let autoSlideInterval;
+
+// ==========================
+// GET PRODUCTS
+// ==========================
 async function getProducts() {
     try {
         const response = await fetch(
@@ -17,77 +19,133 @@ async function getProducts() {
 
         renderProducts(data.products);
 
-        initCarousel(); // პროდუქტების დახატვის შემდეგ
+        initAutoCarousel(); // ⬅️ autoplay აქ იწყება
 
     } catch (error) {
         console.log(error);
     }
 }
 
+// ==========================
+// RENDER PRODUCTS
+// ==========================
 function renderProducts(products) {
 
-    // 1. ვიყენებთ .map()-ს, რომელიც ქმნის ახალ მასივს და .join('')-ით ვაქცევთ ერთ დიდ ტექსტად
     track.innerHTML = products.map(product => {
-        
-        
-        const hasNoDiscount = product.price.discountPercentage === 0;
-        const hideClass = hasNoDiscount ? 'hidden' : '';
 
-        // 1. ვამოწმებთ, არის თუ არა მარაგი 0
-        const isOutOfStock = product.stock <= 0;
+        // ფასდაკლება
+        const hasNoDiscount =
+            product.price.discountPercentage === 0;
 
-        // 2. ტექსტის ლოგიკა: თუ მარაგი 0-ია, დაიწეროს "Out of stock", თუ არა - აჩვენოს რაოდენობა
-        const stockText = isOutOfStock ? 'Out of stock' : `In Stock: ${product.stock}`;
+        const hideClass =
+            hasNoDiscount ? "hidden" : "";
 
-        // 3. სტილის კლასი: თუ მარაგი 0-ია, დავამატოთ კლასი 'no-stock' (მაგალითად, წითლად შესაღებად)
-        const stockClass = isOutOfStock ? 'no-stock' : 'in-stock';
+        // მარაგი
+        const isOutOfStock =
+            product.stock <= 0;
 
-        // 4. ღილაკის გათიშვის ლოგიკა: თუ მარაგი 0-ია, ღილაკს დაემატება ატრიბუტი 'disabled'
-        const isButtonDisabled = isOutOfStock ? 'disabled' : '';
+        const stockText =
+            isOutOfStock
+                ? "Out of stock"
+                : `In Stock: ${product.stock}`;
+
+        const stockClass =
+            isOutOfStock
+                ? "no-stock"
+                : "in-stock";
+
+        const isButtonDisabled =
+            isOutOfStock
+                ? "disabled"
+                : "";
+
         return `
-            <div class="products__card"> 
-                <img src="${product.thumbnail}" class="products__image" referrerpolicy="no-referrer"> 
-                <h3>${product.title}</h3> 
-                <p class="products__card-brand">${product.brand.toUpperCase()}</p> 
-                <p>${product.category.name}</p> 
-                <p class="products__stock ${stockClass}">${stockText}</p> 
-                <p>${"⭐".repeat(Math.round(product.rating))}</p> 
-                
-                <div class="products__price"> 
-                    <!-- თუ ფასდაკლება 0-ია, ამ ელემენტებს დაემატება კლასი hidden -->
-                    <span class="products__price-old ${hideClass}"> 
-                        ${product.price.beforeDiscount} ${product.price.currency} 
-                    </span> 
-                    
-                    <span class="products__price-current"> 
-                        ${product.price.current} ${product.price.currency} 
-                    </span> 
-                    
-                    <span class="discount ${hideClass}"> 
-                        -${product.price.discountPercentage}% 
-                    </span> 
-                </div> 
-                
-                <button class="products__cart"  ${isButtonDisabled}>
-                   ${isOutOfStock ? 'Unavailable' : 'Add To Cart'}
-                 </button> 
-            </div> 
+        <div class="products__card">
+
+            <img
+                src="${product.thumbnail}"
+                class="products__image"
+                referrerpolicy="no-referrer"
+            >
+
+            <h3>
+                ${product.title}
+            </h3>
+
+            <p class="products__card-brand">
+                ${product.brand.toUpperCase()}
+            </p>
+
+            <p>
+                ${product.category.name}
+            </p>
+
+            <p class="products__stock ${stockClass}">
+                ${stockText}
+            </p>
+
+            <p>
+                ${"⭐".repeat(
+                    Math.round(product.rating)
+                )}
+            </p>
+
+            <div class="products__price">
+
+                <span class="products__price-old ${hideClass}">
+                    ${product.price.beforeDiscount}
+                    ${product.price.currency}
+                </span>
+
+                <span class="products__price-current">
+                    ${product.price.current}
+                    ${product.price.currency}
+                </span>
+
+                <span class="discount ${hideClass}">
+                    -${product.price.discountPercentage}%
+                </span>
+
+            </div>
+
+            <button
+                class="products__cart"
+                ${isButtonDisabled}
+                onclick="addToCart('${product._id}')"
+            >
+                ${
+                    isOutOfStock
+                        ? "Unavailable"
+                        : "Add To Cart"
+                }
+            </button>
+
+        </div>
         `;
-    }).join(''); // აერთიანებს მასივს ერთ სტრუქტურად
+
+    }).join("");
 }
-    
- 
 
-
-function initCarousel() {
+// ==========================
+// AUTO CAROUSEL 
+// ==========================
+function initAutoCarousel() {
 
     const totalCards =
         document.querySelectorAll(".products__card").length;
 
     const maxSlide =
-        totalCards - visibleCards;
+        Math.max(totalCards - visibleCards, 0);
 
-    nextBtn.addEventListener("click", () => {
+    currentSlide = 0;
+
+    track.style.transform = "translateX(0px)";
+
+    if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+    }
+
+    autoSlideInterval = setInterval(() => {
 
         if (currentSlide >= maxSlide) {
             currentSlide = 0;
@@ -97,21 +155,20 @@ function initCarousel() {
 
         track.style.transform =
             `translateX(-${currentSlide * cardWidth}px)`;
-    });
 
-    prevBtn.addEventListener("click", () => {
-
-        if (currentSlide <= 0) {
-            currentSlide = maxSlide;
-        } else {
-            currentSlide--;
-        }
-
-        track.style.transform =
-            `translateX(-${currentSlide * cardWidth}px)`;
-    });
+    }, 2500);
 }
 
+// ==========================
+// ADD TO CART
+// ==========================
+function addToCart(id) {
+    console.log("Added to cart:", id);
+}
+
+// ==========================
+// START
+// ==========================
 getProducts();
 
 // search
@@ -119,6 +176,7 @@ getProducts();
 const searchInput=document.getElementById("searchInput");
 const searchBtn=document.getElementById("searchBtn");
 const searchList=document.getElementById("searchList");
+
 
 async function searchProducts(){
 
@@ -148,36 +206,50 @@ searchBtn.addEventListener("click",()=>{
 
 });
 
+console.log("listener-მდე მოვედი");
 
-// // dropdown  ით ძებნის შედეგების გამოტანა 
-// searchInput.addEventListener("input",async()=>{
 
-//     const keyword=searchInput.value;
 
-//     if(keyword.length<2){return} ;
+// dropdown  ით ძებნის შედეგების გამოტანა 
+searchInput.addEventListener("input", async () => {
 
-//     const response=await fetch(
-//         `https://api.everrest.educata.dev/shop/products/search?keywords=${keyword}`
-//     );
+    const keyword = searchInput.value.trim();
 
-//     const data=await response.json();
+    if(keyword.length < 2){
+        searchList.innerHTML = "";
+        searchList.style.display = "none";
+        return;
+    }
 
-//     searchList.innerHTML="";
+    const response = await fetch(
+        `https://api.everrest.educata.dev/shop/products/search?keywords=${keyword}`
+    );
 
-//     data.products.forEach(product=>{
-//    const item=document.createElement("div");
+    const data = await response.json();
 
-//    item.classList.add("search-item");
-//    item.innerHTML=`
-//    <img src="${product.thumbnail}" width="50">
-//     <span>${product.title}</span>
-   
-//    `;
-//    searchList.appendChild(item);
-    
+    searchList.innerHTML = "";
 
-//     });
+    if(data.products.length === 0){
+        searchList.innerHTML = "<p>Product not found</p>";
+        searchList.style.display = "block";
+        return;
+    }
 
-// });
+    data.products.forEach(product => {
 
+        const item = document.createElement("div");
+
+        item.classList.add("search-item");
+
+        item.innerHTML = `
+            <img src="${product.thumbnail}" width="50">
+            <span>${product.title}</span>
+        `;
+
+        searchList.appendChild(item);
+    });
+
+    searchList.style.display = "block";
+
+});
 
