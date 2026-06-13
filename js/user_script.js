@@ -3,20 +3,22 @@ let accessToken = ""; //რადგან ფუნქციიდან ვე
 async function getCurrentUser() {
   try {
     // Storage-დან token-ის წამოღება
-    const accessToken = sessionStorage.getItem("accessToken");
+    const token = sessionStorage.getItem("accessToken");
 
     // თუ token არ არსებობს
-    if (!accessToken) {
+    if (!token) {
       alert("Please Sign In First");
+      console.log("No token found")
 
       return;
     }
 
     const res = await fetch("https://api.everrest.educata.dev/auth", {
+      
       headers: {
         "Content-type": "application/json",
-        Accept: "*/*",
-        Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -45,9 +47,7 @@ async function getCurrentUser() {
 
       document.getElementById("currentUser-phone").value = data.phone || "";
       if (data.gender) {
-  const genderInput = document.querySelector(
-    `input[name="gender"][value="${data.gender}"]`
-  );
+  const genderInput = document.querySelector(`input[name="gender"][value="${data.gender}"]`);
 
   if (genderInput) {
     genderInput.checked = true;
@@ -61,14 +61,18 @@ async function getCurrentUser() {
       alert(data.message);
     }
   } catch (error) {
-    console.error(error);
+    console.log(error);
 
-    alert("Server Error");
+  
   }
 }
 
-// // გვერდის ჩატვირთვისთანავე
-// window.addEventListener("DOMContentLoaded", getCurrentUser);
+// გვერდის ჩატვირთვისთანავე
+window.addEventListener("DOMContentLoaded", () => {
+  if (sessionStorage.getItem("accessToken")) {
+    getCurrentUser();
+  }
+});
 
 // verify email
 const form = document.getElementById("verify-id");
@@ -133,8 +137,9 @@ async function updateUserData(event) {
       userUpdateData[key] = key === "age" ? Number(fields[key]) : fields[key];
     }
   }
-
+console.log(userUpdateData);
   const response = await fetch("https://api.everrest.educata.dev/auth/update", {
+    
     method: "PATCH",
     headers: {
       "Content-type": "application/json",
@@ -145,10 +150,15 @@ async function updateUserData(event) {
   });
 
   const data = await response.json();
+  console.log(data)
   if (response.ok) {
+    alert("User updated successfully");
+
+    document.getElementById("updateData-form").reset();
     getCurrentUser();
   } else {
     console.log("error");
+    alert("Update User issue")
   }
   console.log(data);
 }

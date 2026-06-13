@@ -9,7 +9,6 @@
 }
 
 .header {
-  max-width: 1600px;
   background-color: rgb(131, 210, 131);
   display: flex;
   justify-content: space-around;

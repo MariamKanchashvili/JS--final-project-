@@ -123,8 +123,12 @@
 const cartProducts = document.getElementById("cartProducts");
 const cartSummary = document.getElementById("cartSummary");
 const token = sessionStorage.getItem("accessToken");
-
+if (!token) {
+    console.log("User not logged in");
+}
 async function getCart() {
+    if (!token) return;
+
   try {
     const response = await fetch("https://api.everrest.educata.dev/shop/cart", {
       headers: {
@@ -348,4 +352,6 @@ async function checkout() {
 document.getElementById("checkoutBtn").addEventListener("click", checkout);
 document.getElementById("clearCartBtn").addEventListener("click", clearCart);
 
-getCart();
+if (token && cartProducts && cartSummary) {
+    getCart();
+}

@@ -300,13 +300,13 @@ function addToCart(id) {
 // ==========================
 // AUTH BUTTON
 // ==========================
-window.addEventListener("DOMContentLoaded", () => {
-    const token = sessionStorage.getItem("accessToken")
+// window.addEventListener("DOMContentLoaded", () => {
+//     const token = sessionStorage.getItem("accessToken")
 
-    if (token) {
-        const btn = document.createElement("button")
-        btn.textContent = "Go to Cart"
-        btn.onclick = () => window.location.href = "cart_index.html"
-        document.querySelector(".header__auth").appendChild(btn)
-    }
-})
+//     if (token) {
+//         const btn = document.createElement("button")
+//         btn.textContent = "Go to Cart"
+//         btn.onclick = () => window.location.href = "cart_index.html"
+//         document.querySelector(".header__auth").appendChild(btn)
+//     }
+// })
