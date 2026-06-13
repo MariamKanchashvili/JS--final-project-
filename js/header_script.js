@@ -30,7 +30,6 @@ searchBtn.addEventListener("click", ()=>{
 })
 
 // dropdown  ით ძებნის შედეგების გამოტანა 
-// dropdown  ით ძებნის შედეგების გამოტანა 
 searchInput.addEventListener("input", async () => {
 
     const keyword = searchInput.value.trim();
@@ -65,6 +64,9 @@ searchInput.addEventListener("input", async () => {
             <img src="${product.thumbnail}" width="50">
             <span>${product.title}</span>
         `;
+         item.addEventListener("click", () => {
+    window.location.href = `http://127.0.0.1:5500/html/product-Id.html?id=${product._id}`;
+});
 
         searchList.appendChild(item);
     });
@@ -72,3 +74,4 @@ searchInput.addEventListener("input", async () => {
     searchList.style.display = "block";
 
 });
+

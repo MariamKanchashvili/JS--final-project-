@@ -219,6 +219,7 @@ text-align: center;
     justify-content: center;
     background: none;
     border: none;
+
     cursor: pointer;
 }
 .gender-input{
@@ -236,6 +237,34 @@ input[type='radio']:checked:after {
     display: inline-block;
     visibility: visible;
     border: 2px solid $input-color;
+    }
+}
+.cart-image-btn{
+    border: none;
+    background-color: $background-color;
+    cursor: pointer;
+     transition: transform 0.5s ease;
+     transform: rotate(18deg);
+    &:hover{
+       transform: scale(1.3); 
+    }
+}
+.shop-image-btn{
+border: none;
+    background-color: $background-color;
+    cursor: pointer;
+     transition: transform 0.5s ease;
+    margin-top: 5px;
+    width: 80px;
+    &:hover{
+       transform: scale(1.3); 
+    }
+}
+#logotBtn{
+    transition: transform 0.5s ease;
+    font-family: $text-font;
+    &:hover{
+       transform: scale(1.3); 
     }
 }
 

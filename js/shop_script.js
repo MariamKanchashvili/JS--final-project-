@@ -181,7 +181,10 @@ function productsPrint(product){
                 }
 
             </button>
-            
+        <button class="viewDetailsBtn"
+onclick="window.location.href='productById.html?id=${product._id}'">
+View Details
+</button>    
 
         </div>
 
@@ -402,110 +405,113 @@ async function getBrandProducts(brandName) {
     const searchInputAside=document.getElementById("searchInputAside")
 const searchBtnAside=document.getElementById("searchBtnAside")
 const brandSelect=document.getElementById("aside-menu")
-// async function searchProducts() {
 
-//     try {
-//     const keyword=searchInput.value
-//     const brand=brandSelect.value
-//     const rating=document.getElementById("rating").value
-//     const minPrice=Number(document.getElementById("minPrice").value)
-//     const maxPrice=Number(document.getElementById("maxPrice").value)
-//     const sortBy=document.getElementById("sortBy").value
-//     const sortDirection=document.getElementById("sortDirection").value
 
-//     let url= `https://api.everrest.educata.dev/shop/products/search?`
-//     if(keyword){
-//         url+=`keywords=$keyword&`
-//     }
-//     if(brand){
-//         url+=`brand=${brand}`
-//     }
-//      if(rating){
-//             url += `rating=${rating}&`
-//         }
 
-//         if (minPrice >= 0 && !isNaN(minPrice)) {
-//             url += `price_min=${minPrice}&`
+async function searchProducts() {
 
-//         }
+    try {
+    const keyword=searchInput.value
+    const brand=brandSelect.value
+    const rating=document.getElementById("rating").value
+    const minPrice=Number(document.getElementById("minPrice").value)
+    const maxPrice=Number(document.getElementById("maxPrice").value)
+    const sortBy=document.getElementById("sortBy").value
+    const sortDirection=document.getElementById("sortDirection").value
 
-//         if(maxPrice>=0 && !isNaN(maxPrice)){
-//             url += `price_max=${maxPrice}&`
-//         }
+    let url= `https://api.everrest.educata.dev/shop/products/search?`
+    if(keyword){
+        url+=`keywords=${keyword}&`
+    }
+    if (brand &&
+    brand !== "Select Brand"){
+        url+=`brand=${brand}&`
+    }
+if (rating && rating !== "--") url += `rating=${rating}&`
 
-//         if(sortBy){
-//             url += `sort_by=${sortBy}&`
-//         }
+        if (minPrice >= 0 && !isNaN(minPrice)) {
+            url += `price_min=${minPrice}&`
 
-//         if(sortDirection){
-//             url += `sort_direction=${sortDirection}&`
-//         }
-// url=url.slice(0,-1)
-//    console.log("FINAL URL:", url)
+        }
+
+        if(maxPrice>=0 && !isNaN(maxPrice)){
+            url += `price_max=${maxPrice}&`
+        }
+
+        if(sortBy){
+            url += `sort_by=${sortBy}&`
+        }
+
+        if(sortDirection){
+            url += `sort_direction=${sortDirection}&`
+        }
+url=url.slice(0,-1)
+   console.log("FINAL URL:", url)
         
 
-//    const response=await fetch(url)
-//    const data=await response.json()
-//      products.innerHTML = ""
+   const response=await fetch(url)
+   const data=await response.json()
+     products.innerHTML = ""
 
-//         data.products.forEach(item => {
-//             products.innerHTML += productsPrint(item)
-//         })
-//     } catch (error) {
-//         console.log("შეცდომაა keyword-ის ძებნისას")
-//     }
-   
-// }
-async function searchProducts() {
-    try {
-        const keyword = searchInputAside.value
-        const brand = brandSelect.value
-        const rating = document.getElementById("rating").value
-        const minPrice = document.getElementById("minPrice").value
-        const maxPrice = document.getElementById("maxPrice").value
-        const sortBy = document.getElementById("sortBy").value
-        const sortDirection = document.getElementById("sortDirection").value
-
-        let url = `https://api.everrest.educata.dev/shop/products/search?`
-
-        if (keyword) url += `keywords=${keyword}&`
-        if (brand && brand !== "" && brand !== "Select Brand") url += `brand=${brand}&`
-        if (rating && rating !== "--") url += `rating=${rating}&`
-        if (minPrice !== "" && Number(minPrice) > 0) url += `price_min=${minPrice}&`
-        if (maxPrice !== "" && Number(maxPrice) > 0) url += `price_max=${maxPrice}&`
-        if (sortBy) url += `sort_by=${sortBy}&`
-        if (sortBy && sortDirection) url += `sort_direction=${sortDirection}&`
-      if (Number(minPrice) < 0) {
-
-    alert("Minimum price cannot be less than 0.");
-
-    return;
-}
-
-// თუ მაქსიმალური ფასი უარყოფითია
-if (Number(maxPrice) < 0) {
-
-    alert("Maximum price cannot be less than 0.");
-
-    return;
-}
-        url = url.slice(0, -1)
-        console.log("FINAL URL:", url)
-
-        const response = await fetch(url)
-        const data = await response.json()
-        products.innerHTML = ""
         data.products.forEach(item => {
             products.innerHTML += productsPrint(item)
         })
     } catch (error) {
-        console.log("შეცდომა:", error)
+        console.log("შეცდომაა keyword-ის ძებნისას",error)
     }
+   console.log("brand:", brand)
 }
+
+// async function searchProducts() {
+//     try {
+//         const keyword = searchInputAside.value
+//         const brand = brandSelect.value
+//         const rating = document.getElementById("rating").value
+//         const minPrice = document.getElementById("minPrice").value
+//         const maxPrice = document.getElementById("maxPrice").value
+//         const sortBy = document.getElementById("sortBy").value
+//         const sortDirection = document.getElementById("sortDirection").value
+
+//         let url = `https://api.everrest.educata.dev/shop/products/search?`
+
+//         if (keyword) url += `keywords=${keyword}&`
+//         if (brand && brand !== "" && brand !== "Select Brand") url += `brand=${brand}&`
+//         if (rating && rating !== "--") url += `rating=${rating}&`
+//         if (minPrice !== "" && Number(minPrice) > 0) url += `price_min=${minPrice}&`
+//         if (maxPrice !== "" && Number(maxPrice) > 0) url += `price_max=${maxPrice}&`
+//         if (sortBy) url += `sort_by=${sortBy}&`
+//         if (sortBy && sortDirection) url += `sort_direction=${sortDirection}&`
+//       if (Number(minPrice) < 0) {
+
+//     alert("Minimum price cannot be less than 0.");
+
+//     return;
+// }
+
+// // თუ მაქსიმალური ფასი უარყოფითია
+// if (Number(maxPrice) < 0) {
+
+//     alert("Maximum price cannot be less than 0.");
+
+//     return;
+// }
+//         url = url.slice(0, -1)
+//         console.log("FINAL URL:", url)
+
+//         const response = await fetch(url)
+//         const data = await response.json()
+//         products.innerHTML = ""
+//         data.products.forEach(item => {
+//             products.innerHTML += productsPrint(item)
+//         })
+//     } catch (error) {
+//         console.log("შეცდომა:", error)
+//     }
+// }
 
 searchBtnAside.addEventListener("click",()=>{
     const keyword=searchInputAside.value
-    searchProducts(keyword)
+    searchProducts()
     const brand=brandSelect.value
     const rating=document.getElementById("rating").value
     const minPrice=document.getElementById("minPrice").value
@@ -586,7 +592,9 @@ async function getProducts(page){
             url = `https://api.everrest.educata.dev/shop/products/all?page_index=${page}&page_size=${pageSize}`
 
         }
-
+console.log(data);
+console.log(data.products);
+console.log(data.products.length);
         const response = await fetch(url)
 
         const data = await response.json()
@@ -946,6 +954,8 @@ const brandSelect=document.getElementById("aside-menu")
 const searchInput = document.getElementById("searchInput")
 const searchList = document.getElementById("searchList")
 async function searchProducts() {
+     console.log("SEARCH STARTED");
+
     try {
         const keyword = searchInputAside.value
         const brand = brandSelect.value
@@ -993,14 +1003,16 @@ if (Number(maxPrice) < 0) {
 }
 
 searchBtnAside.addEventListener("click",()=>{
-    const keyword=searchInputAside.value
+    const keyword=searchInputAside.value;
+    console.log("BUTTON CLICKED");
+
     searchProducts()
-    const brand=brandSelect.value
-    const rating=document.getElementById("rating").value
-    const minPrice=document.getElementById("minPrice").value
-    const maxPrice=document.getElementById("maxPrice").value
-    const sortBy=document.getElementById("sortBy").value
-    const sortDirection=document.getElementById("sortDirection").value
+    const brand=brandSelect.value;
+    const rating=document.getElementById("rating").value;
+    const minPrice=document.getElementById("minPrice").value;
+    const maxPrice=document.getElementById("maxPrice").value;
+    const sortBy=document.getElementById("sortBy").value;
+    const sortDirection=document.getElementById("sortDirection").value;
      console.log(keyword)
 
     console.log(brand)

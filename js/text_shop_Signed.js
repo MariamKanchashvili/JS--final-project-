@@ -130,7 +130,7 @@ function productCard(product) {
 
             </button>
 <button class="viewDetailsBtn"
-onclick="window.location.href='product-Id.html?id=${product._id}'">
+onclick="window.location.href='product-id-Signed.html?id=${product._id}'">
 View Details
 </button>    
 

@@ -245,6 +245,9 @@ searchInput.addEventListener("input", async () => {
             <img src="${product.thumbnail}" width="50">
             <span>${product.title}</span>
         `;
+ item.addEventListener("click", () => {
+    window.location.href = `http://127.0.0.1:5500/html/product-Id.html?id=${product._id}`;
+});
 
         searchList.appendChild(item);
     });

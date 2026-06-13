@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title>Home page Signed</title>
    
    <link rel="stylesheet" href="../css/header/header_style.css">
    <link rel="stylesheet" href="../css/footer/footer_style.css">
    <link rel="stylesheet" href="../css/font.css">
    <link rel="stylesheet" href="../css/variables_style/variables_style.css">
    <link rel="stylesheet" href="../css/home_style/home_style.css">
- 
+ <link rel="stylesheet" href="../css/user_style/user_style.css">
 </head>
 <body>
   <!-- header -->
-     <header class="header">
+      <header class="header">
 
     <div class="header__logo">
-        <p><a href="./home_index.html">Digital</a></p>
-        <p class="coloredP"><a href="./home_index.html">Store</a></p>
+        <p>Digital</p>
+        <p class="coloredP">Store</p>
     </div>
 
-    <div class="header__search">
-        <input type="text"
+    <div class="header__search" >
+          <input type="text"
          placeholder="search" 
          name="keywords"
          id="searchInput">
@@ -31,17 +31,24 @@
     <button id="searchBtn"><img src="../assets/icons/magnifying-glass-find-search-svgrepo-com.svg" class="header__search header__search--icon"></button>
     </div>
     <div class="header__auth">
-     <div class="header__signup" onclick="window.location.href='http://127.0.0.1:5500/html/signUp_index.html'">
+    <!-- <div class="header__signup">
         <img src="../assets/icons/record-svgrepo-com.svg" class="header__signup header__signup--icon">
         <p>Sign up</p>
-    </div>
+    </div> -->
 
-    <div class="header__login" onclick="window.location.href='http://127.0.0.1:5500/html/logIn_index.html'">
+    <div class="header__login" onclick="window.location.href='http://127.0.0.1:5500/html/user_index.html'">
         <img src="../assets/icons/personal-account-account-svgrepo-com.svg" class="header__login header__login--icon">
-        <p>Log In</p>
+        <!-- <p>Log In</p> -->
     </div>
-    <div class="header__burger"><img class="header__burger header__burger--icon" src="../assets/icons/hamburger-menu-more-svgrepo-com.svg" alt="burger"></div>
-</div>
+    <!-- <div class="header__burger"><img class="header__burger header__burger--icon" src="../assets/icons/hamburger-menu-more-svgrepo-com.svg" alt="burger"></div>
+</div> -->
+    <button  onclick="window.location.href='cart_index.html'"  class="cart-image-btn"> <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image"></button>
+        <button onclick="window.location.href='shopSigned.html'" class="shop-image-btn"><img src="../assets/icons/store-homepage-home-svgrepo-com.svg" alt=""></button>
+        <button id="logotBtn">  <img src="../assets/icons/logout-svgrepo-com.svg" alt="log out">Log Out</button>
+
+
+
+
 </header>
 <!-- main body -->
 <!-- section -->
@@ -120,5 +127,8 @@
 </form>
     </footer>  
 <script src="../js/home_script.js"></script>
+<script src="../js/user_script.js"></script>
+
+
 </body>
 </html>

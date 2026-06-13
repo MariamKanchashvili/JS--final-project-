@@ -6,8 +6,7 @@
     list-style: none;
 }
 
-@import url(../font.scss);
-@import url(../variables_style/variables_style.scss);
+
 
 
 $navigation-font:"letter/designer";
@@ -65,6 +64,7 @@ gap: 15px;
     text-align: center;
     flex: 0 0 260px;
     position: relative;
+    height: 50vh;
 }
 .card-text{
     color: white;
@@ -271,7 +271,37 @@ border: 1px solid black;
         color:red;
         font-weight: 600;
     }
+ .products__price {
+        display: flex;
+       justify-content: center;
+        gap: 5px;
+        margin-top: 10px;
+        position: relative;
+    
+    .products__price-old { 
+        text-decoration: line-through !important;
+        color: gray;
+        font-size: 14px;
+    }
 
+    .products__price-current {
+        color: green;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    }
+.viewDetailsBtn{
+    border-radius: 8px;
+    padding: 5px;
+    cursor: grabbing;
+    background-color: $input-color;
+    color: white;
+    font-family: $text-font;
+    border: 2px solid #d59b82;
+  
+   
+}
+    
  @media screen and (max-width:580px){
     .box{
        grid-template-areas:

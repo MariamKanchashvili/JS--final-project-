@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../mariami"
+		},
+		{
+			"path": "../შესწორებული"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Store -final project"
+	}
+}

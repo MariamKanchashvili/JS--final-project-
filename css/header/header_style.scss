@@ -34,8 +34,10 @@ border: 3px solid black;
     font-size: 80px;
     text-decoration: underline;
     cursor: pointer;
+ transform: translate 0.5 ease;
      &:hover{
         text-decoration-color:  rgb(24, 179, 83) ;
+        transform: scale(1.3)
     }
     .coloredP{
     color: rgb(11, 164, 32);
@@ -141,7 +143,7 @@ border: 3px solid black;
     display: flex;
     align-items: center;
     gap: 10px;
-
+font-family: sans-serif;
     padding: 10px;
 
     cursor: pointer;
@@ -179,7 +181,7 @@ border: 3px solid black;
 }
 @media screen and (max-width:576px){
     .header{
-        &__logo{font-size: 30px;}
+        &__logo{font-size: 50px;}
         &__search{
             input{min-width: 90%;}
         }
