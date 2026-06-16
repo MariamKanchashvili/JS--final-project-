@@ -5,9 +5,130 @@
     text-decoration: none;
     list-style: none;
 }
+$navigation-font:"letter/designer";
+$headers-font:"spooky";
+$text-font:"montserrat";
+$header-size:50px;
+$text-size:14px;
+$border-radius:8px;
+$background-color:rgb(131, 210, 131);
+$input-color:#FFB89A;
 
-@use "../variables_style/variables_style.scss";
-@use "../font.scss";
+
+
+.cart_container{
+display: flex;
+flex-direction: column;
+gap: 15px;
+  background-color: $background-color;
+  font-family: $text-font;
+}
+
+.order-summary{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 20px;
+}
+#cartProducts{
+grid-area: products;
+display: flex;
+flex-direction: column;
+justify-content: center;
+gap: 15px;
+padding: 10px;
+line-height: 2;
+text-align: center;
+}
 
 
 
+.my-cart-name{
+    font-size: $header-size;
+    font-family: $navigation-font;
+    text-align: center;
+}
+
+.cart-item__quantity{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.cartBtn{
+    background-color: $input-color;
+    min-width: 20px;
+    height: 2vh;
+}
+
+
+.cart-item{
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(4,2fr) 1fr;
+    gap: 30px;
+    text-align: center;
+      place-items: center;
+      height: 8vh;
+    
+}
+.cart-headers {
+  display: grid;
+  grid-area: headers;
+  grid-template-columns: repeat(4,2fr) 1fr;
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 2px solid white;
+  text-align: center;
+}
+
+.cart-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+#checkoutBtn,#clearCartBtn,.applyBtn{
+    height: 4vh;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid black;
+}
+#checkoutBtn{
+    img{
+        max-width: 45px;
+    }
+}
+.apply{
+    display: flex;
+    gap: 10px;
+}
+.promo-wrapper{
+   padding: 10px;
+   
+}
+.btn-wrapper{
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    gap: 10px;
+}
+.promo-code{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.text-area{
+textarea{
+height: 10vh;
+width: 400px;
+}
+}
+.value{
+        font-weight: bold;
+}

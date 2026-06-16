@@ -111,7 +111,7 @@ function renderProducts(products) {
             <button
                 class="products__cart"
                 ${isButtonDisabled}
-                onclick="addToCart('${product._id}')"
+                onclick="addToCart('${product._id}') "
             >
                 ${
                     isOutOfStock

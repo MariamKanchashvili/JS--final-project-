@@ -73,4 +73,26 @@
 }
 .signUp_Btn:hover {
   font-weight: bold;
+}
+
+.gender-input input[type=radio]:checked:after {
+  width: 11px;
+  height: 11px;
+  border-radius: 15px;
+  top: 15px;
+  left: -1px;
+  position: relative;
+  background-color: #FFB89A;
+  content: " ";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid #FFB89A;
+}
+
+@media screen and (max-width: 520px) {
+  #signup-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
 }/*# sourceMappingURL=signUp_style.css.map */

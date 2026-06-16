@@ -5,16 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="../css/cart_style/cart_style.css">
+    
     <link rel="stylesheet" href="../css/font.css">
    <link rel="stylesheet" href="../css/variables_style/variables_style.css">
- 
+     <link rel="stylesheet" href="../css/cart_style/cart_style.css"> 
 </head>
 <body>
-    <div id="cartSummary"></div>
+    <div class="cart_container">
+
+ <div class="my-cart-name">My cart</div>
+
+<table class="cart-table">
+
+
+
+<div class="cart-headers">
+  <p></p>
+  <p>Product</p>
+  <p>Qty</p>
+  <p>Price</p>
+  <p>Total</p>
+</div>
+    
     <div id="cartProducts"></div>
-    <button id="checkoutBtn">Checkout</button>
-    <button id="clearCartBtn">Clear Cart</button>
+    <div id="cartSummary"  class="order-summary"></div>
+    <div class="btn-wrapper">
+<button id="checkoutBtn" class="checkout">Checkout <img src="../assets/icons/shopping-svgrepo-com.svg" alt=""></button>
+    <button id="clearCartBtn">Clear Cart 🗑️</button>
+    </div>
+    
+
+ <div class="promo-wrapper">
+            
+               <div class="promo-code">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M19,11.7071068 L11.2071068,19.5 C10.8165825,19.8905243 10.1834175,19.8905243 9.79289322,19.5 L4.5,14.2071068 C4.10947571,13.8165825 4.10947571,13.1834175 4.5,12.7928932 L12.2928932,5 L19,5 L19,11.7071068 Z M18,6 L12.7071068,6 L5.20710678,13.5 L10.5,18.7928932 L18,11.2928932 L18,6 Z M15,10 C14.4477153,10 14,9.55228475 14,9 C14,8.44771525 14.4477153,8 15,8 C15.5522847,8 16,8.44771525 16,9 C16,9.55228475 15.5522847,10 15,10 Z"></path></svg>
+                  <a href="#">Enter a promo code</a>
+                </div>
+                <div class="apply">
+                  <input type="text" placeholder="e.g.,SAVE50">
+                  <button class="applyBtn">Apply</button>
+                </div>
+                  <div class="add-note">
+                <div class="promo-code ">
+                     <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M13,6.70710678 L13,9 L15.2928932,9 L13,6.70710678 Z M17,19 C17,19.5522847 16.5522847,20 16,20 L7,20 C6.44771525,20 6,19.5522847 6,19 L6,6 C6,5.44771525 6.44771525,5 7,5 L12.7099045,5 L17,9.2995551 L17,19 Z M16,10 L12,10 L12,6 L7,6 L7,19 L16,19 L16,10 Z"></path></svg>
+                    <a href="#">Add a note</a>
+                  </div>
+                <div class="text-area"> <textarea  placeholder="e.g., Leave outside the front door"></textarea></div>
+                </div></div>
+
+
+    </div>
+
+        
     <script src="../js/cart_script.js"></script>
+   
 </body>
 </html>

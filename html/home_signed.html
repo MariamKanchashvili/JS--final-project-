@@ -31,23 +31,61 @@
     <button id="searchBtn"><img src="../assets/icons/magnifying-glass-find-search-svgrepo-com.svg" class="header__search header__search--icon"></button>
     </div>
     <div class="header__auth">
-    <!-- <div class="header__signup">
-        <img src="../assets/icons/record-svgrepo-com.svg" class="header__signup header__signup--icon">
-        <p>Sign up</p>
-    </div> -->
+  
 
     <div class="header__login" onclick="window.location.href='http://127.0.0.1:5500/html/user_index.html'">
         <img src="../assets/icons/personal-account-account-svgrepo-com.svg" class="header__login header__login--icon">
-        <!-- <p>Log In</p> -->
+
     </div>
-    <!-- <div class="header__burger"><img class="header__burger header__burger--icon" src="../assets/icons/hamburger-menu-more-svgrepo-com.svg" alt="burger"></div>
-</div> -->
+  
     <button  onclick="window.location.href='cart_index.html'"  class="cart-image-btn"> <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image"></button>
         <button onclick="window.location.href='shopSigned.html'" class="shop-image-btn"><img src="../assets/icons/store-homepage-home-svgrepo-com.svg" alt=""></button>
         <button id="logotBtn">  <img src="../assets/icons/logout-svgrepo-com.svg" alt="log out">Log Out</button>
+<div class="header__burger">
+        <img
+            id="burgerIcon"
+            class="header__burger--icon"
+            src="../assets/icons/hamburger-menu-more-svgrepo-com.svg"
+            alt="burger">
+    </div>
 
+    <!-- MOBILE MENU -->
 
+        <div class="header__mobile-menu">
 
+            <div class="header__mobile-user"
+                 onclick="window.location.href='http://127.0.0.1:5500/html/user_index.html'">
+
+                My Profile
+
+            </div>
+
+            <div class="header__mobile-cart"
+                 onclick="window.location.href='cart_index.html'">
+
+                Cart
+
+            </div>
+
+            <div class="header__mobile-shop"
+                 onclick="window.location.href='shopSigned.html'">
+
+                Shop
+
+            </div>
+
+            <div class="header__mobile-logout"
+                 id="mobileLogoutBtn">
+
+                Log Out
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
 
 </header>
 <!-- main body -->
@@ -56,7 +94,7 @@
     <div class="section__card">
 <h2>Incredible Prices on All Your Favorite Items</h2>
 <h3>Get more for less on selected brands</h3>
-<button class="section__btn"><a href="./shop_index.html">Shop Now</a></button>
+<button class="section__btn"><a href="./shopSigned.html">Shop Now</a></button>
 
 </div>
   </section>  
@@ -128,7 +166,7 @@
     </footer>  
 <script src="../js/home_script.js"></script>
 <script src="../js/logout_script.js"></script>
-
-
+<script src="../js/cart_script.js"></script>
+<script src="../js/header_script.js"></script>
 </body>
 </html>
