@@ -119,6 +119,10 @@ z-index: 9999;
 .mobile-menu-active{
     display: flex !important;
 }
+.no-stock{
+    color: red;
+    font-weight: bolder;
+}
 
 @media screen and (max-width:1100px){
     .header{
@@ -174,11 +178,26 @@ z-index: 9999;
 }
 
 }
+// რეიტინგი
+.rating{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.star{
+    font-size:30px;
+    cursor:pointer;
+}
+
+.star:hover{
+    transform:scale(1.1);
+}
 @media screen and (max-width:850px){
    .productDetails{
     flex-direction: column;
     padding: 15px;
-    margin: 100px 0;
+    margin: 120px 0;
    } 
 
 }
@@ -187,4 +206,12 @@ z-index: 9999;
     max-width: 380px;
     width: 100%;
    } 
+   .currentProduct{
+    font-size: 12px;
+   }
+   .productDetails_category-title{
+    font-size: 40px;
+    text-align: center;
+   }
+  .productDetails_category-description{font-size: 15px;}
 }

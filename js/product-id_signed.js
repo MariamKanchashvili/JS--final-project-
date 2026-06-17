@@ -19,7 +19,7 @@ const stockClass = isOutOfStock? "no-stock": "in-stock"
     <a href=" ">${productPage.title}</a>
  </div>
     <div class="productDetails">
-     <div class="first-side"
+     <div class="first-side">
         <!-- დიდი სურათი -->
         <img
             src="${productPage.thumbnail}"
@@ -27,7 +27,7 @@ const stockClass = isOutOfStock? "no-stock": "in-stock"
             class="productDetails_category-image"
         >
         </div>
-        <div class="second-side" 
+        <div class="second-side">
         <!-- სათაური -->
         <h1 class="productDetails_category-title">
             ${productPage.title}
@@ -59,10 +59,23 @@ const stockClass = isOutOfStock? "no-stock": "in-stock"
         </p>
 
         <!-- რეიტინგი -->
-        <p class="productDetails_category-rating">
-            ${stars}
-            (${productPage.rating})
-        </p>
+<p class="productDetails_category-rating">
+    ${stars}
+    (${productPage.rating})
+</p>
+
+<!-- რეიტინგის დაწერა -->
+<div class="ratingBox">
+    <h3>Rate this product</h3>
+
+    <div class="rating">
+        <span class="star" data-rate="1">☆</span>
+        <span class="star" data-rate="2">☆</span>
+        <span class="star" data-rate="3">☆</span>
+        <span class="star" data-rate="4">☆</span>
+        <span class="star" data-rate="5">☆</span>
+    </div>
+</div>
 
         <!-- ფასი -->
         <div class="productDetails_price">

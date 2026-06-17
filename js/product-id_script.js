@@ -34,6 +34,29 @@ async function getPageId(id) {
 
         // პროდუქტის დახატვა
         pageItems.innerHTML = printPageId(data);
+      const stars = document.querySelectorAll(".star");
+
+stars.forEach((star) => {
+
+    star.addEventListener("click", () => {
+
+        const rate = Number(star.dataset.rate);
+
+        rateProduct(data._id, rate);
+
+        stars.forEach((s, index) => {
+
+            if (index < rate) {
+                s.textContent = "★";
+            } else {
+                s.textContent = "☆";
+            }
+
+        });
+
+    });
+
+});  
 
     } catch (error) {
 
@@ -67,7 +90,7 @@ const stockClass = isOutOfStock? "no-stock": "in-stock"
     <a href=" ">${productPage.title}</a>
  </div>
     <div class="productDetails">
-     <div class="first-side"
+     <div class="first-side">
         <!-- დიდი სურათი -->
         <img
             src="${productPage.thumbnail}"
@@ -75,7 +98,7 @@ const stockClass = isOutOfStock? "no-stock": "in-stock"
             class="productDetails_category-image"
         >
         </div>
-        <div class="second-side" 
+        <div class="second-side" >
         <!-- სათაური -->
         <h1 class="productDetails_category-title">
             ${productPage.title}
@@ -106,11 +129,23 @@ const stockClass = isOutOfStock? "no-stock": "in-stock"
           ${stockText}
         </p>
 
-        <!-- რეიტინგი -->
-        <p class="productDetails_category-rating">
-            ${stars}
-            (${productPage.rating})
-        </p>
+   
+         <!-- რეიტინგის დაწერა  -->
+         <p class="productDetails_category-rating">
+    ${stars}
+    (${productPage.rating})
+</p>
+<div class="ratingBox">
+    <h3>Rate this product</h3>
+
+    <div class="rating">
+        <span class="star" data-rate="1">☆</span>
+        <span class="star" data-rate="2">☆</span>
+        <span class="star" data-rate="3">☆</span>
+        <span class="star" data-rate="4">☆</span>
+        <span class="star" data-rate="5">☆</span>
+    </div>
+</div>
 
         <!-- ფასი -->
         <div class="productDetails_price">
@@ -147,4 +182,50 @@ const stockClass = isOutOfStock? "no-stock": "in-stock"
 </div>
     `;
 }
+// რეიტინგი 
+async function rateProduct(productId, rate) {
 
+    try {
+
+        const token = sessionStorage.getItem("accessToken");
+
+        if (!token) {
+            alert("Please login first");
+              window.location.href = "logIn_index.html";
+            return;
+        }
+
+        const response = await fetch(
+            "https://api.everrest.educata.dev/shop/products/rate",
+            {
+                method: "POST",
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    productId,
+                    rate
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        console.log(data);
+
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        alert("Rating submitted!");
+
+    } catch (error) {
+
+        console.log("Rate Error:", error);
+        alert("Rating failed");
+
+    }
+
+}
