@@ -71,7 +71,8 @@ text-align: center;
     gap: 30px;
     text-align: center;
       place-items: center;
-      height: 8vh;
+       min-height: 80px;
+   height: auto;
     
 }
 .cart-headers {

@@ -298,6 +298,7 @@ searchInputHeader.addEventListener("input", async (e) => {
   const token = sessionStorage.getItem("accessToken");
   if (!token) {
     alert("Please sign in first");
+      window.location.href = "logIn_index.html";
     return;
   }
 
