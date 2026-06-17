@@ -20,8 +20,10 @@ async function getCart() {
 
     if (response.ok) {
       renderCart(data);
+       updateGlobalBadge(data.total.quantity);
     } else {
       cartProducts.innerHTML = "<p >Cart is empty</p>";
+      updateGlobalBadge(0);  // Set to zero if API returns an error or empty cart
     }
 
     console.log(data);
@@ -119,6 +121,9 @@ async function sendCartRequest(method, productId, quantity) {
 
     if (response.ok) {
       alert("Product added to cart");
+      if(data.total){
+        updateGlobalBadge(data.total.quantity)
+      }else{getCart()}
     } else {
       alert("Failed to add product");
     }
@@ -167,6 +172,7 @@ async function updateQuantity(productId, newQuantity) {
 
     if (response.ok) {
       renderCart(data);
+       updateGlobalBadge(data.total.quantity);
     }
 
     console.log(data);
@@ -193,6 +199,7 @@ async function deleteItem(productId) {
 
     if (response.ok) {
       renderCart(data);
+       updateGlobalBadge(data.total.quantity);
     }
 
     console.log(data);
@@ -215,6 +222,7 @@ async function clearCart() {
     if (response.ok) {
       cartProducts.innerHTML = "<p>Cart is empty</p>";
       cartSummary.innerHTML = "";
+       updateGlobalBadge(0); // Reset count back to zero
     }
 
     console.log(data);
@@ -241,6 +249,7 @@ async function checkout() {
       alert(data.message);
       cartProducts.innerHTML = "<p>Cart is empty</p>";
       cartSummary.innerHTML = "";
+      updateGlobalBadge(0); // Reset count back to zero
     } else {
       alert("Checkout failed");
     }
@@ -263,3 +272,41 @@ if (token && cartProducts && cartSummary) {
  applyBtn.addEventListener("click",()=>{
   alert ("Code applied sucessfully!")
  })
+
+
+
+//  cart count 
+const globalCartCount = document.querySelector(".global-cart-count");
+
+function updateGlobalBadge(quantity) {
+  if (globalCartCount) {
+    globalCartCount.textContent = quantity;
+  }
+}
+
+async function loadCartBadge() {
+  const token = sessionStorage.getItem("accessToken");
+
+  if (!token) return;
+
+  try {
+    const response = await fetch(
+      "https://api.everrest.educata.dev/shop/cart",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      updateGlobalBadge(data.total.quantity);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", loadCartBadge);

@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="../css/variables_style/variables_style.css">
     <link rel="stylesheet" href="../css/user_style/user_style.css">
     <link rel="stylesheet" href="../css/shop_style/shop_style.css"> 
+    <link rel="stylesheet" href="../css/cart_style/cart_style.css">
 
 </head>
 <body>
   <!-- header -->
       <header class="header">
 
-    <div class="header__logo">
+    <div class="header__logo" onclick="window.location.href='http://127.0.0.1:5500/html/home_signed.html'" >
         <p>Digital</p>
         <p class="coloredP">Store</p>
     </div>
@@ -38,7 +39,12 @@
 
     </div>
   
-    <button  onclick="window.location.href='cart_index.html'"  class="cart-image-btn"> <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image"></button>
+    <button onclick="window.location.href='cart_index.html'" class="cart-image-btn">
+      <div class="cart-badge-wrapper">
+        <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image">
+        <span class="global-cart-count">0</span>
+      </div>
+    </button>
         <button onclick="window.location.href='shopSigned.html'" class="shop-image-btn"><img src="../assets/icons/store-homepage-home-svgrepo-com.svg" alt="shop icon"></button>
         <button id="logotBtn">  <img src="../assets/icons/logout-svgrepo-com.svg" alt="log out">Log Out</button>
         <!-- burger icon  -->
@@ -66,7 +72,7 @@
             <div class="header__mobile-cart"
                  onclick="window.location.href='cart_index.html'">
           <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image">
-
+  <span id="global-cart-count">0</span>
             </div>
 
             <div class="header__mobile-shop"

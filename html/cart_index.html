@@ -39,7 +39,13 @@
 
     </div>
   
-    <button  onclick="window.location.href='cart_index.html'"  class="cart-image-btn"> <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image"></button>
+    <button onclick="window.location.href='cart_index.html'" class="cart-image-btn">
+      <div class="cart-badge-wrapper">
+        <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image">
+        <span class="global-cart-count">0</span>
+      </div>
+    </button>
+    
         <button onclick="window.location.href='shopSigned.html'" class="shop-image-btn"><img src="../assets/icons/store-homepage-home-svgrepo-com.svg" alt="shop icon"></button>
         <button id="logotBtn">  <img src="../assets/icons/logout-svgrepo-com.svg" alt="log out">Log Out</button>
         <!-- burger icon  -->
@@ -67,6 +73,7 @@
             <div class="header__mobile-cart"
                  onclick="window.location.href='cart_index.html'">
           <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image">
+        
 
             </div>
 

@@ -37,3 +37,37 @@ if (burgerBtn && mobileMenu && burgerIcon) {
     });
     
 }
+const globalCartCount = document.querySelector(".global-cart-count");
+
+function updateGlobalBadge(quantity) {
+  if (globalCartCount) {
+    globalCartCount.textContent = quantity;
+  }
+}
+
+async function loadCartBadge() {
+  const token = sessionStorage.getItem("accessToken");
+
+  if (!token) return;
+
+  try {
+    const response = await fetch(
+      "https://api.everrest.educata.dev/shop/cart",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      updateGlobalBadge(data.total.quantity);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", loadCartBadge);

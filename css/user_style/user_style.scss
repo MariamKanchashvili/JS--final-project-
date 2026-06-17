@@ -336,7 +336,27 @@ z-index: 9999;
 .mobile-menu-active{
     display: flex !important;
 }
-
+// cart icon count
+.cart-badge-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.global-cart-count {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: #ff4d4d;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+  min-width: 10px;
+  text-align: center;
+}
+// responsive
 @media screen and (max-width:1100px){
     .header{
 .header__mobile-user-icon{
@@ -390,6 +410,7 @@ z-index: 9999;
 }
 
 }
+
 
 @media screen and (max-width:780px){
    .user_page{
