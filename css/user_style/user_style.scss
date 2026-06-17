@@ -345,8 +345,9 @@ z-index: 9999;
 }
 .global-cart-count {
   position: absolute;
-  top: -5px;
-  right: -8px;
+  transform: rotate(344deg);
+  top: 17px;
+  right: 25px;
   background-color: #ff4d4d;
   color: white;
   font-size: 11px;

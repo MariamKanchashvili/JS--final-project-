@@ -119,7 +119,10 @@ function renderProducts(products) {
                         : "Add To Cart"
                 }
             </button>
-
+<button class="viewDetailsBtn"
+onclick="window.location.href='product-Id.html?id=${product._id}'">
+View Details
+</button>    
         </div>
         `;
 
