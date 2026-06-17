@@ -7,7 +7,8 @@ async function getCurrentUser() {
 
     // თუ token არ არსებობს
     if (!token) {
-      alert("Please Sign In First");
+      alert("Please Sign In First  ");
+      window.location.href = "logIn_index.html";
       console.log("No token found")
 
       return;
@@ -68,9 +69,13 @@ async function getCurrentUser() {
 }
 
 // გვერდის ჩატვირთვისთანავე
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
   if (sessionStorage.getItem("accessToken")) {
-    getCurrentUser();
+    await getCurrentUser();
+
+    const firstName = document.getElementById("currentUser-firstname").value;
+
+    alert(`Hello, ${firstName}`);
   }
 });
 
@@ -233,9 +238,9 @@ const response = await fetch("https://api.everrest.educata.dev/auth/change_passw
       sessionStorage.setItem("accessToken", data.access_token);
 
       sessionStorage.setItem("refreshToken", data.refresh_token);
-      alert("Password successfully");
+      alert("Password changed successfully");
     } else {
-      alert("Something went wrong");
+      alert("Something went wrong ,password change problem");
     }
   } catch (error) {
     console.log(error);
@@ -249,11 +254,11 @@ const logoutBtn = document.getElementById("logotBtn");
 logoutBtn.addEventListener("click", logout);
 async function logout(event) {
   event.preventDefault();
-
+  const firstName = document.getElementById("currentUser-firstname")?.value || "User";
   sessionStorage.removeItem("accessToken");
   sessionStorage.removeItem("refreshToken");
 
-  alert("Successfully logged out");
+  alert(`Successfully logged out, Good bye, ${firstName}`);
 
   window.location.href = "logIn_index.html";
 }
