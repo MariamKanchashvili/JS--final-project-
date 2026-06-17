@@ -260,41 +260,48 @@ async function logout(event) {
 
 // Delete
 
-const deleteUserBtn=document.getElementById("deleteUserBtn")
+const deleteUserBtn = document.getElementById("deleteUserBtn");
 
-deleteUserBtn.addEventListener("click",deleteAccount)
+deleteUserBtn.addEventListener("click", deleteAccount);
 
+async function deleteAccount() {
+  try {
+    const token = sessionStorage.getItem("accessToken");
 
-async function deleteAccount(){
-try {
- const token = sessionStorage.getItem("token")
-  const confirmDelete=confirm("Are you sure you want to delete your account?")
-  if (!confirmDelete) return;
+    if (!token) {
+      alert("No token found. Please log in again.");
+      return;
+    }
 
-const response= await fetch("https://api.everrest.educata.dev/auth/delete",{
-  method:"DELETE",
-  headers:{
+    const confirmDelete = confirm("Are you sure you want to delete your account?");
+    if (!confirmDelete) return;
 
-     "Authorization": `Bearer ${token}`,
+    const response = await fetch("https://api.everrest.educata.dev/auth/delete", {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    });
 
+    const data = await response.json();
+
+    console.log(response.status);
+    console.log(data);
+
+    if (!response.ok) {
+      alert(data.message || "Delete failed");
+      return;
+    }
+
+    alert("Account deleted successfully");
+
+sessionStorage.removeItem("accessToken");
+sessionStorage.removeItem("refreshToken");
+    window.location.href = "signUp_index.html";
+
+  } catch (error) {
+    console.log("delete account Error", error);
+    alert("Delete account issue");
   }
-})
-console.log(response.status);
-console.log(await response.text());
-const data= await  response.json()
-console.log(data)
-
-if (response.ok) {
-  alert("Account deleted successfully");}
-
- localStorage.removeItem("token");
-  window.location.href = "signUp_index.html";
-  
-return;
-
-} catch (error) {
-  alert("Delete account issue,check problem")
-  console.log("delete account Error",error)
-}
-
 }
