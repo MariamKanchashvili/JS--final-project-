@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
-    <link rel="stylesheet" href="../css/signUp_style/signUp_style.css">
-       <link rel="stylesheet" href="../css/font.css">
+   <link rel="stylesheet" href="../css/font.css">
    <link rel="stylesheet" href="../css/variables_style/variables_style.css">
    <link rel="stylesheet" href="../css/header/header_style.css">
    <link rel="stylesheet" href="../css/footer/footer_style.css">
- 
+     <link rel="stylesheet" href="../css/signUp_style/signUp_style.css">
 </head>
 <body>
-    <header class="header">
+  <!-- header -->
+     <header class="header">
 
     <div class="header__logo">
         <p><a href="./home_index.html">Digital</a></p>
@@ -28,6 +28,8 @@
        <div id="searchList"></div>
     <button id="searchBtn"><img src="../assets/icons/magnifying-glass-find-search-svgrepo-com.svg" class="header__search header__search--icon"></button>
     </div>
+
+    
   <div class="header__auth">
 
     <div class="header__signup"
@@ -53,6 +55,7 @@
     <!-- BURGER -->
     <div class="header__burger">
         <img
+            id="burgerIcon"
             class="header__burger--icon"
             src="../assets/icons/hamburger-menu-more-svgrepo-com.svg"
             alt="burger">
@@ -72,6 +75,12 @@
              onclick="window.location.href='http://127.0.0.1:5500/html/logIn_index.html'">
 
             <p>Log In</p>
+
+        </div>
+          <div class="header__mobile-shop"
+             onclick="window.location.href='http://127.0.0.1:5500/html/shop_index.html'">
+
+            <p>Shop</p>
 
         </div>
 
@@ -171,5 +180,6 @@
     </footer>  
  <script src="../js/signUp_script.js"></script>
  <script src="../js/header_script.js"></script>
+
 </body>
 </html>

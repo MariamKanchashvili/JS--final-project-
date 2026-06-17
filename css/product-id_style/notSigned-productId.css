@@ -114,26 +114,10 @@
 }
 
 @media screen and (max-width: 1100px) {
-  .header .header__mobile-user-icon {
-    width: 50px;
-    cursor: pointer;
-  }
-  .header .header__mobile-user, .header .header__mobile-cart, .header .header__mobile-shop, .header .header__mobile-logout {
-    display: flex;
-    background-color: rgba(0, 0, 0, 0.2705882353);
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  .header .header__mobile-user:hover, .header .header__mobile-cart:hover, .header .header__mobile-shop:hover, .header .header__mobile-logout:hover {
-    transform: translate 0.5s ease;
-    transform: scale(1.23);
-  }
-  .header .cart-image-btn {
+  .header__signup {
     display: none;
   }
-  .header .shop-image-btn {
+  .header__login {
     display: none;
   }
   .header__burger {
@@ -145,26 +129,29 @@
     right: 20px;
     background-color: rgba(0, 128, 0, 0.3294117647);
   }
-  .header #logotBtn {
-    display: none;
+  .header__mobile-signup, .header__mobile-login, .header__mobile-shop {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.2705882353);
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
-  .header .header__mobile-menu {
+  .header__mobile-signup:hover, .header__mobile-login:hover, .header__mobile-shop:hover {
+    transform: translate 0.5s ease;
+    transform: scale(1.23);
+  }
+  .header__mobile-signup__mobile-menu, .header__mobile-login__mobile-menu, .header__mobile-shop__mobile-menu {
     align-items: center;
     justify-content: center;
   }
-  .header .header__mobile-menu p {
+  .header__mobile-signup__mobile-menu p, .header__mobile-login__mobile-menu p, .header__mobile-shop__mobile-menu p {
     cursor: pointer;
   }
-  .header .header__mobile-menu p:hover {
+  .header__mobile-signup__mobile-menu p:hover, .header__mobile-login__mobile-menu p:hover, .header__mobile-shop__mobile-menu p:hover {
     transform: translate 0.5s ease;
     transform: scale(1.23);
     font-weight: bold;
-  }
-  .header__mobile-logout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
   }
 }
 @media screen and (max-width: 850px) {
@@ -179,4 +166,4 @@
     max-width: 380px;
     width: 100%;
   }
-}/*# sourceMappingURL=product-id_style.css.map */
+}/*# sourceMappingURL=notSigned-productId.css.map */

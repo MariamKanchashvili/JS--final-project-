@@ -228,6 +228,7 @@ footer {
     position: fixed;
     top: 20px;
     right: 20px;
+    background-color: rgba(0, 128, 0, 0.3294117647);
   }
   .header #logotBtn {
     display: none;

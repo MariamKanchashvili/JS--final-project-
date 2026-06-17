@@ -70,6 +70,19 @@
   font-weight: bold;
 }
 
+.header__mobile-signup, .header__mobile-login, .header__mobile-shop {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.2705882353);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.header__mobile-signup:hover, .header__mobile-login:hover, .header__mobile-shop:hover {
+  transform: translate 0.5s ease;
+  transform: scale(1.23);
+}
+
 @media screen and (max-width: 420px) {
   .recoverPass__title h2 {
     font-size: 20px;

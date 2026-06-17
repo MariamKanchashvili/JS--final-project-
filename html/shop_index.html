@@ -13,16 +13,16 @@
  <link rel="stylesheet" href="../css/shop_style/shop_style.css">
 </head>
 <body>
-    <!-- header -->
+   <!-- header -->
      <header class="header">
 
-    <div class="header__logo" onclick="window.location.href='http://127.0.0.1:5500/html/home_index.html'">
-        <p>Digital</p>
-        <p class="coloredP">Store</p>
+    <div class="header__logo">
+        <p><a href="./home_index.html">Digital</a></p>
+        <p class="coloredP"><a href="./home_index.html">Store</a></p>
     </div>
 
-    <div class="header__search" >
-          <input type="text"
+    <div class="header__search">
+        <input type="text"
          placeholder="search" 
          name="keywords"
          id="searchInput">
@@ -30,21 +30,66 @@
        <div id="searchList"></div>
     <button id="searchBtn"><img src="../assets/icons/magnifying-glass-find-search-svgrepo-com.svg" class="header__search header__search--icon"></button>
     </div>
-    <div class="header__auth">
-    <div class="header__signup" onclick="window.location.href='http://127.0.0.1:5500/html/signUp_index.html'">
-        <img src="../assets/icons/record-svgrepo-com.svg" class="header__signup header__signup--icon">
+
+    
+  <div class="header__auth">
+
+    <div class="header__signup"
+         onclick="window.location.href='http://127.0.0.1:5500/html/signUp_index.html'">
+
+        <img src="../assets/icons/record-svgrepo-com.svg"
+             class="header__signup header__signup--icon">
+
         <p>Sign up</p>
+
     </div>
 
-    <div class="header__login" onclick="window.location.href= 'http://127.0.0.1:5500/html/logIn_index.html'" >
-        <img src="../assets/icons/personal-account-account-svgrepo-com.svg" class="header__login header__login--icon">
+    <div class="header__login"
+         onclick="window.location.href='http://127.0.0.1:5500/html/logIn_index.html'">
+
+        <img src="../assets/icons/personal-account-account-svgrepo-com.svg"
+             class="header__login header__login--icon">
+
         <p>Log In</p>
+
     </div>
-    <div class="header__burger"><img class="header__burger header__burger--icon" src="../assets/icons/hamburger-menu-more-svgrepo-com.svg" alt="burger"></div>
+
+    <!-- BURGER -->
+    <div class="header__burger">
+        <img
+            id="burgerIcon"
+            class="header__burger--icon"
+            src="../assets/icons/hamburger-menu-more-svgrepo-com.svg"
+            alt="burger">
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="header__mobile-menu">
+
+        <div class="header__mobile-signup"
+             onclick="window.location.href='http://127.0.0.1:5500/html/signUp_index.html'">
+
+            <p>Sign Up</p>
+
+        </div>
+
+        <div class="header__mobile-login"
+             onclick="window.location.href='http://127.0.0.1:5500/html/logIn_index.html'">
+
+            <p>Log In</p>
+
+        </div>
+          <div class="header__mobile-shop"
+             onclick="window.location.href='http://127.0.0.1:5500/html/shop_index.html'">
+
+            <p>Shop</p>
+
+        </div>
+
+    </div>
+
 </div>
-</header>
-
-
+    </header>
 
         <div class="box">
 

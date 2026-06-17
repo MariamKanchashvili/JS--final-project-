@@ -14,10 +14,10 @@
      <link rel="stylesheet" href="../css/user_style/user_style.css">
 </head>
 <body>
-  <!-- header -->
-   <header class="header">
+ <!-- header -->
+      <header class="header">
 
-    <div class="header__logo" onclick="window.location.href='http://127.0.0.1:5500/html/home_signed.html'" >
+    <div class="header__logo">
         <p>Digital</p>
         <p class="coloredP">Store</p>
     </div>
@@ -36,19 +36,59 @@
 
     <div class="header__login" onclick="window.location.href='http://127.0.0.1:5500/html/user_index.html'">
         <img src="../assets/icons/personal-account-account-svgrepo-com.svg" class="header__login header__login--icon">
-        
+
     </div>
-    <div class="header__burger"><img class="header__burger header__burger--icon" src="../assets/icons/hamburger-menu-more-svgrepo-com.svg" alt="burger"></div>
-</div>
+  
     <button  onclick="window.location.href='cart_index.html'"  class="cart-image-btn"> <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image"></button>
-        <button onclick="window.location.href='shopSigned.html'" class="shop-image-btn"><img src="../assets/icons/store-homepage-home-svgrepo-com.svg" alt=""></button>
+        <button onclick="window.location.href='shopSigned.html'" class="shop-image-btn"><img src="../assets/icons/store-homepage-home-svgrepo-com.svg" alt="shop icon"></button>
         <button id="logotBtn">  <img src="../assets/icons/logout-svgrepo-com.svg" alt="log out">Log Out</button>
+        <!-- burger icon  -->
+<div class="header__burger">
+        <img
+            id="burgerIcon"
+            class="header__burger--icon"
+            src="../assets/icons/hamburger-menu-more-svgrepo-com.svg"
+            alt="burger">
+    </div>
 
+    <!-- MOBILE MENU -->
 
+        <div class="header__mobile-menu">
 
+            <div class="header__mobile-user"
+     onclick="window.location.href='http://127.0.0.1:5500/html/user_index.html'">
+
+    <img
+        src="../assets/icons/personal-account-account-svgrepo-com.svg"
+        class="header__mobile-user-icon">
+
+</div>
+
+            <div class="header__mobile-cart"
+                 onclick="window.location.href='cart_index.html'">
+          <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image">
+
+            </div>
+
+            <div class="header__mobile-shop"
+                 onclick="window.location.href='shopSigned.html'">
+            <img src="../assets/icons/store-homepage-home-svgrepo-com.svg" alt="shop icon">
+            </div>
+
+            <div class="header__mobile-logout"
+                 id="mobileLogoutBtn">
+
+             <img src="../assets/icons/logout-svgrepo-com.svg" alt="log out">Log Out
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
 
 </header>
-
 
 <!-- main body  -->
     <div class="cart_container">

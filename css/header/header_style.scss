@@ -134,11 +134,10 @@ z-index: 9999;
     padding: 15px;
     z-index: 9990;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.95);
-    flex-direction: column;
-    gap: 15px;
     color: white;
     font-family: $text-font;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     gap: 15px;
  
@@ -201,9 +200,23 @@ font-family: sans-serif;
         position: fixed;
         top: 20px;
         right: 20px;
+             background-color: #00800054;
     }
       
+      }
 }
+.header__mobile-signup,.header__mobile-login,.header__mobile-shop{
+    display: flex;
+    background-color:#00000045;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover{
+        transform: translate 0.5s ease;
+        transform: scale(1.23);
+
+    }
 &__mobile-menu{
 
     align-items: center;
@@ -212,7 +225,7 @@ font-family: sans-serif;
     cursor: pointer;
     
     &:hover{
-    transform: translate 0.5 ease;    
+    transform: translate 0.5s ease;    
     transform: scale(1.23) ;
     font-weight: bold;
 }}

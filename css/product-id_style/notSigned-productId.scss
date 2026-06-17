@@ -122,14 +122,21 @@ z-index: 9999;
 
 @media screen and (max-width:1100px){
     .header{
-.header__mobile-user-icon{
-    width:50px;
-    cursor:pointer;
-    
+    &__signup{display: none;}
+    &__login{display: none;}
+    &__burger{
+        display: block;
+    &--icon{
+        position: fixed;
+        top: 20px;
+        right: 20px;
+             background-color: #00800054;
+    }
+      
+      }
 }
-
-.header__mobile-user,.header__mobile-cart,.header__mobile-shop,.header__mobile-logout{
-        display: flex;
+.header__mobile-signup,.header__mobile-login,.header__mobile-shop{
+    display: flex;
     background-color:#00000045;
     width: 100%;
     align-items: center;
@@ -140,20 +147,8 @@ z-index: 9999;
         transform: scale(1.23);
 
     }
-}
-.cart-image-btn{display: none;}
-.shop-image-btn{display: none;}
-    &__burger{
-        display: block;
-    &--icon{
-        position: fixed;
-        top: 20px;
-        right: 20px;
-             background-color: #00800054;
-    }}
-    #logotBtn{display: none;}
-.header__mobile-menu{
-  
+&__mobile-menu{
+
     align-items: center;
     justify-content: center;
   p{
@@ -166,12 +161,7 @@ z-index: 9999;
 }}
 }
       }
-.header__mobile-logout{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+
 
 }
 @media screen and (max-width:850px){
