@@ -257,3 +257,44 @@ async function logout(event) {
 
   window.location.href = "logIn_index.html";
 }
+
+// Delete
+
+const deleteUserBtn=document.getElementById("deleteUserBtn")
+
+deleteUserBtn.addEventListener("click",deleteAccount)
+
+
+async function deleteAccount(){
+try {
+ const token = sessionStorage.getItem("token")
+  const confirmDelete=confirm("Are you sure you want to delete your account?")
+  if (!confirmDelete) return;
+
+const response= await fetch("https://api.everrest.educata.dev/auth/delete",{
+  method:"DELETE",
+  headers:{
+
+     "Authorization": `Bearer ${token}`,
+
+  }
+})
+console.log(response.status);
+console.log(await response.text());
+const data= await  response.json()
+console.log(data)
+
+if (response.ok) {
+  alert("Account deleted successfully");}
+
+ localStorage.removeItem("token");
+  window.location.href = "signUp_index.html";
+  
+return;
+
+} catch (error) {
+  alert("Delete account issue,check problem")
+  console.log("delete account Error",error)
+}
+
+}

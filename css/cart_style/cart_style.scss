@@ -20,8 +20,9 @@ $input-color:#FFB89A;
 display: flex;
 flex-direction: column;
 gap: 15px;
-  background-color: $background-color;
+  background-color:rgb(131 210 131 / 48%);
   font-family: $text-font;
+  padding: 25px;
 }
 
 .order-summary{

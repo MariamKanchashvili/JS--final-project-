@@ -10,8 +10,9 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background-color: rgb(131, 210, 131);
+  background-color: rgba(131, 210, 131, 0.48);
   font-family: "montserrat";
+  padding: 25px;
 }
 
 .order-summary {

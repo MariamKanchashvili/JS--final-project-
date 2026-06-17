@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+@import url(../font.scss);
+@import url(../variables_style/variables_style.scss);
+$navigation-font:"letter/designer";
+$headers-font:"spooky";
+$text-font:"montserrat";
+$header-size:50px;
+$text-size:14px;
+$border-radius:8px;
+$background-color:rgb(131, 210, 131);
+$input-color:#FFB89A;
+
+.recoverBox{
+    max-width: 600px;
+    margin: 280px auto;
+    display: flex;
+    flex-direction: column;
+        font-family: $text-font;
+   background-color: $background-color;
+   padding: 15px;
+   border: 3px solid black 
+
+ 
+}
+.recoverBox__icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.recoverPass__title{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+}
+.smallText{
+    color: rgb(73, 69, 69);
+
+}
+#recoverPass-id{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    font-family: $text-font;
+        margin-bottom: 15px
+}
+#recoverPass{
+    height: 4vh;
+    border-radius: 10px;
+    padding-left: 15px;
+     font-family: $text-font;
+}
+#recoverPassBtn{
+    height: 4vh;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+     font-family: $text-font;
+     &:hover{
+        transform: translate 0.3 ease;
+        transform: scale(1.1);
+        font-weight: bold;
+     }
+   
+}
+
+@media screen and (max-width:420px){
+.recoverPass__title{
+    h2{font-size: 20px;}
+
+}
+.smallText{font-size: 13px;}
+#recoverPass-id{flex-direction: column;}
+#recoverPassBtn{font-size: 11px;}
+#recoverPass{height: 5vh;min-width: 280px;}
+}
+

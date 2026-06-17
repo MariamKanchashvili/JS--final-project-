@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
-   
-
-   <link rel="stylesheet" href="../css/footer/footer_style.css">
-   <link rel="stylesheet" href="../css/font.css">
-   <link rel="stylesheet" href="../css/variables_style/variables_style.css">
-   <link rel="stylesheet" href="../css/home_style/home_style.css">
+    <title>Recover password</title>
+    <link rel="stylesheet" href="../css/recoverPass_style/recoverPass_style.css">
+    <link rel="stylesheet" href="../css/font.css">
     <link rel="stylesheet" href="../css/header/header_style.css">
+    <link rel="stylesheet" href="../css/footer/footer_style.css">
 </head>
 <body>
-  <!-- header -->
-     <header class="header">
+      <header class="header">
 
     <div class="header__logo">
         <p><a href="./home_index.html">Digital</a></p>
@@ -30,8 +26,6 @@
        <div id="searchList"></div>
     <button id="searchBtn"><img src="../assets/icons/magnifying-glass-find-search-svgrepo-com.svg" class="header__search header__search--icon"></button>
     </div>
-
-    
   <div class="header__auth">
 
     <div class="header__signup"
@@ -90,31 +84,28 @@
 
 </div>
     </header>
-<!-- main body -->
-<!-- section -->
-  <section class="section">
-    <div class="section__card">
-<h2>Incredible Prices on All Your Favorite Items</h2>
-<h3>Get more for less on selected brands</h3>
-<button class="section__btn"><a href="./shop_index.html">Shop Now</a></button>
 
-</div>
-  </section>  
-   <!--პროდუქტების კარუსელი   -->
-<section class="products">
 
-    <div class="products__container">
-        <div class="products__track">
+    <!-- main body -->
+    <div class="recoverBox">
+     <div class="recoverBox__icon"><img src="../assets/icons/mailbox-svgrepo-com.svg" alt="mailbox"></div>
+     <!-- Recovery password  -->
+ <div class="recoverPass__title">
+     <h2>Forgot your Password? </h2>
+     <span class="smallText">Enter your username and we will send you instructions to reset your password</span>
+      </div>
 
-            <!-- JS ჩაამატებს პროდუქტებს -->
+<form id="recoverPass-id">
+     
+<input type="email" id="recoverPass" placeholder="Enter your email">
+    <button type="submit" id="recoverPassBtn" >Recover password</button>
+</form>
 
-        </div>
     </div>
 
-</section>
+    <!-- footer -->
 
-  <!-- footer -->
- <footer class="footer">
+    <footer class="footer">
         <div class="footer__wrapper">
         <div class="footer__header">NEED A HAND?</div>
         <div class="footer__side1">
@@ -166,8 +157,7 @@
 
 </form>
     </footer>  
-<script src="../js/home_script.js"></script>
-<script src="../js/cart_script.js"></script>
+<script src="../js/recoverPass.js"></script>
 <script src="../js/header_script.js"></script>
 </body>
 </html>

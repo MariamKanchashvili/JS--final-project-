@@ -39,8 +39,8 @@
         <img src="../assets/icons/personal-account-account-svgrepo-com.svg" class="header__login header__login--icon">
         <!-- <p>Log In</p> -->
     </div>
-    <!-- <div class="header__burger"><img class="header__burger header__burger--icon" src="../assets/icons/hamburger-menu-more-svgrepo-com.svg" alt="burger"></div>
-</div> -->
+    <div class="header__burger"><img class="header__burger header__burger--icon" src="../assets/icons/hamburger-menu-more-svgrepo-com.svg" alt="burger"></div>
+</div>
     <button  onclick="window.location.href='cart_index.html'"  class="cart-image-btn"> <img src="../assets/icons/cart-svgrepo-com (1).svg" alt="cart" class="cart-image"></button>
         <button onclick="window.location.href='shopSigned.html'" class="shop-image-btn"><img src="../assets/icons/store-homepage-home-svgrepo-com.svg" alt=""></button>
         <button id="logotBtn">  <img src="../assets/icons/logout-svgrepo-com.svg" alt="log out">Log Out</button>
@@ -58,7 +58,7 @@
     <label for="currentUser-lastname"> Lastname</label>
  <input type="text" id="currentUser-lastname" placeholder="your lastname" name="lastName">
 <label for="currentUser-age"> Age</label>
- <input type="number" id="currentUser-age" placeholder="your age" name="age">
+ <input type="number" id="currentUser-age" placeholder="your age" name="age"  min="0"> 
 <label for="currentUser-email"> Email</label>
  <input type="email" id="currentUser-email" placeholder="your email" name="email">
 
@@ -105,7 +105,7 @@
     <label for="updateData-lastname"> Lastname</label>
  <input type="text" id="updateData-lastname" placeholder="your lastname" name="lastName">
 <label for="updateData-age"> Age</label>
- <input type="number" id="updateData-age" placeholder="your age" name="age">
+ <input type="number" id="updateData-age" placeholder="your age" name="age"  min="0">
 <label for="updateData-email"> Email</label>
  <input type="email" id="updateData-email" placeholder="your email" name="email">
 <label for="updateData-address"> Address</label>
@@ -148,6 +148,11 @@
     <input type="password" id="changePass" placeholder="Your new password" required>
     <button type="submit" id="changePassBtn" >Save new password</button>
 </form>
+<!-- delete account  -->
+<div id="deleteUser">
+    <p>Delete account ❌</p>
+    <button id="deleteUserBtn">Delete </button>
+</div>
 
 </div>
 

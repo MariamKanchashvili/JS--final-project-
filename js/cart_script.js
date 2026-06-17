@@ -256,3 +256,9 @@ document.getElementById("clearCartBtn").addEventListener("click", clearCart);
 if (token && cartProducts && cartSummary) {
     getCart();
 }
+
+ const applyBtn=document.querySelector(".applyBtn")
+
+ applyBtn.addEventListener("click",()=>{
+  alert ("Code applied sucessfully!")
+ })

@@ -16,6 +16,7 @@
   font-family: monospace;
   background-color: rgb(131, 210, 131);
   padding: 15px;
+  border: 3px solid black;
 }
 
 .signIn_title {

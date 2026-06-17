@@ -245,4 +245,68 @@
 }
 #logotBtn:hover {
   transform: scale(1.3);
+}
+
+#deleteUser {
+  display: flex;
+  align-items: center;
+  font-family: monospace;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+#deleteUser p {
+  font-size: 26px;
+  min-width: 400px;
+}
+
+#deleteUserBtn {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 10px;
+  height: 5vh;
+  padding: 10px;
+  min-width: 200px;
+  border: 2px solid red;
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "montserrat";
+}
+#deleteUserBtn:hover {
+  transform: translate 0.5 ease;
+  transform: scale(1.23);
+  font-weight: bold;
+}
+
+@media screen and (max-width: 780px) {
+  .user_page {
+    padding-left: 20px;
+  }
+  .currentUser-form {
+    grid-template-columns: 1fr;
+  }
+  #updateData-form {
+    grid-template-columns: 1fr;
+  }
+  #verify-id, #recoverPass-id {
+    flex-direction: column;
+  }
+  #verify-id #verifyEmail, #verify-id #recoverPass, #recoverPass-id #verifyEmail, #recoverPass-id #recoverPass {
+    min-width: 200px;
+  }
+  #verify-id #verifyBtn, #verify-id #recoverPassBtn, #recoverPass-id #verifyBtn, #recoverPass-id #recoverPassBtn {
+    height: 4vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #deleteUser {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 15px;
+  }
 }/*# sourceMappingURL=user_style.css.map */
