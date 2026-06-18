@@ -342,7 +342,7 @@ function addChatStyles() {
     }
 
     #ai-chat-header {
-      background: #2563eb;
+      background: #56c3da;
       color: white;
       padding: 14px 16px;
       display: flex;
@@ -415,7 +415,7 @@ function addChatStyles() {
     #ai-chat-input:focus { border-color: #2563eb; }
 
     #ai-chat-send {
-      background: #2563eb;
+      background:#56c3da;
       border: none;
       border-radius: 8px;
       width: 38px;
