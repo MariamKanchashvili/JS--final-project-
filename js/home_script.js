@@ -162,29 +162,6 @@ function initAutoCarousel() {
     }, 2500);
 }
 
-// ==========================
-// ADD TO CART
-// ==========================
-async function addToCart(productId) {
-  const token = sessionStorage.getItem("accessToken");
-  if (!token) {
-    alert("Please sign in first");
-    return;
-  }
-
-  const cart = await getCartData();
-
-  if (!cart) {
-    await sendCartRequest("POST", productId, 1);
-    return;
-  }
-
-  const existingProduct = cart.products.find((p) => p.productId === productId);
-  const newQuantity = existingProduct ? existingProduct.quantity + 1 : 1;
-  const method = cart.products.length > 0 ? "PATCH" : "POST";
-
-  await sendCartRequest(method, productId, newQuantity);
-}
 
 // ==========================
 // START
