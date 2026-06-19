@@ -9,14 +9,10 @@ const pageButtons = document.querySelectorAll(".btn1")
 
 const categoryContainer = document.querySelector(".store-category")
 
-const searchInputHeader = document.getElementById("searchInput")
-const searchList = document.getElementById("searchList")
-
+// aside ფილტრის ელემენტები
 const searchInputAside = document.getElementById("searchInputAside")
 const searchBtnAside = document.getElementById("searchBtnAside")
-
 const brands = document.getElementById("aside-menu")
-
 const ratingSelect = document.getElementById("rating")
 const minPriceInput = document.getElementById("minPrice")
 const maxPriceInput = document.getElementById("maxPrice")
@@ -31,17 +27,18 @@ let pageSize = 8
 let currentCategory = null
 
 // ==========================
-// INIT
+// INIT - გვერდის ჩატვირთვისას
 // ==========================
 getProducts(currentPage)
 getCategories()
 getBrands()
 
 // ==========================
-// PRODUCTS
+// PRODUCTS - პროდუქტების ჩამოტვირთვა
 // ==========================
 async function getProducts(page = 1) {
     try {
+        // კატეგორია არჩეულია? კატეგორიის URL, სხვა შემთხვევაში ყველა
         let url = currentCategory
             ? `https://api.everrest.educata.dev/shop/products/category/${currentCategory}?page_index=${page}&page_size=${pageSize}`
             : `https://api.everrest.educata.dev/shop/products/all?page_index=${page}&page_size=${pageSize}`
@@ -56,6 +53,7 @@ async function getProducts(page = 1) {
     }
 }
 
+// პროდუქტების დახატვა
 function renderProducts(products) {
     productsContainer.innerHTML = ""
     let html = ""
@@ -68,7 +66,7 @@ function renderProducts(products) {
 }
 
 // ==========================
-// PRODUCT CARD (OLD CSS NAMES)
+// PRODUCT CARD
 // ==========================
 function productCard(product) {
 
@@ -76,64 +74,41 @@ function productCard(product) {
     const hideClass = hasNoDiscount ? "hidden" : ""
 
     const isOutOfStock = product.stock <= 0
-
-    const stockText = isOutOfStock
-        ? "Out of stock"
-        : `In Stock: ${product.stock}`
-
-    const stockClass = isOutOfStock
-        ? "no-stock"
-        : "in-stock"
+    const stockText = isOutOfStock ? "Out of stock" : `In Stock: ${product.stock}`
+    const stockClass = isOutOfStock ? "no-stock" : "in-stock"
 
     return `
     <div class="card">
-
         <img src="${product.thumbnail}" class="card-img-top">
-
         <div class="card-body">
-
             <h5 class="card-title">${product.title}</h5>
-
             <p class="card-text">${product.brand.toUpperCase()}</p>
-
             <p>${product.category.name}</p>
-
-            <p class="${stockClass}">
-                ${stockText}
-            </p>
-
-            <p>
-                ${"⭐".repeat(Math.round(product.rating))}
-            </p>
+            <p class="${stockClass}">${stockText}</p>
+            <p>${"⭐".repeat(Math.round(product.rating))}</p>
 
             <div class="products__price">
-
                 <span class="products__price-old ${hideClass}">
                     ${product.price.beforeDiscount} ${product.price.currency}
                 </span>
-
                 <span class="products__price-current">
                     ${product.price.current} ${product.price.currency}
                 </span>
-
                 <span class="discount ${hideClass}">
                     -${product.price.discountPercentage}%
                 </span>
-
             </div>
 
             <button class="cart"
                 onclick="addToCart('${product._id}')"
                 ${isOutOfStock ? "disabled" : ""}>
-
                 ${isOutOfStock ? "Unavailable" : "Add To Cart"}
-
             </button>
-<button class="viewDetailsBtn"
-onclick="window.location.href='product-Id.html?id=${product._id}'">
-View Details
-</button>    
 
+            <button class="viewDetailsBtn"
+                onclick="window.location.href='product-Id.html?id=${product._id}'">
+                View Details
+            </button>
         </div>
     </div>
     `
@@ -219,7 +194,7 @@ async function getBrands() {
 }
 
 // ==========================
-// SEARCH (ASIDE FILTER)
+// ASIDE FILTER - გვერდითი ფილტრი
 // ==========================
 searchBtnAside.addEventListener("click", searchProducts)
 
@@ -243,6 +218,7 @@ async function searchProducts() {
         if (sortBy) url += `sort_by=${sortBy}&`
         if (sortDir) url += `sort_direction=${sortDir}&`
 
+        // ბოლო & ამოვიღოთ
         url = url.slice(0, -1)
 
         const res = await fetch(url)
@@ -255,24 +231,9 @@ async function searchProducts() {
     }
 }
 
-
-
 // ==========================
-// AUTH BUTTON
+// RESET FILTERS
 // ==========================
-window.addEventListener("DOMContentLoaded", () => {
-    const token = sessionStorage.getItem("accessToken")
-
-    if (token) {
-        const btn = document.createElement("button")
-        btn.textContent = "Go to Cart"
-        btn.onclick = () => window.location.href = "cart_index.html"
-        document.querySelector(".header__auth").appendChild(btn)
-    }
-})
-
-// filter reset btn 
-
 document.getElementById("resetBtn").addEventListener("click", () => {
     searchInputAside.value = ""
     brands.value = ""
