@@ -164,8 +164,8 @@ ${JSON.stringify(simplified, null, 2)}
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-6", // sonnet = opus-ზე ~5x იაფი
-        max_tokens: 1024,
+        model: "claude-sonnet-4-6", 
+        max_tokens: 400,
         messages: [{ role: "user", content: prompt }],
       }),
     });
@@ -229,8 +229,6 @@ ${JSON.stringify(simplified, null, 2)}
 
 // ====================================================
 // ჩატიდან კალათაში დამატება
-// addToCart მოდის cart_script.js-იდან
-// თუ cart_script.js არ არის მიბმული - ღილაკი მაინც გამოჩნდება
 // ====================================================
 async function addToCartFromChat(productId, productTitle, button) {
   button.disabled = true;

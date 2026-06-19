@@ -1,12 +1,9 @@
 // ====================================================
-// CART SCRIPT - კალათის მართვა + AI ჩატი
+// CART SCRIPT
 // ====================================================
 
-// DOM ელემენტები - cartProducts და cartSummary მხოლოდ cart გვერდზე არსებობს
 const cartProducts = document.getElementById("cartProducts");
 const cartSummary = document.getElementById("cartSummary");
-
-// sessionStorage-იდან token - მომხმარებლის ავტორიზაციისთვის
 const token = sessionStorage.getItem("accessToken");
 
 if (!token) {
@@ -14,10 +11,28 @@ if (!token) {
 }
 
 // ====================================================
-// კალათის მთავარი ფუნქციები
+// პროდუქტის სრული ინფოს წამოღება ID-ით
+// სვაგერი: GET /shop/products/id/{id}
+// კალათა აბრუნებს მხოლოდ productId-ს,
+// ამიტომ სათაური და ფოტო ცალკე უნდა მოვიტანოთ
 // ====================================================
+async function getProductById(productId) {
+  try {
+    const res = await fetch(
+      `https://api.everrest.educata.dev/shop/products/id/${productId}`
+    );
+    const data = await res.json();
+    if (res.ok) return data;
+    return null;
+  } catch (err) {
+    console.log("getProductById error:", err);
+    return null;
+  }
+}
 
-// კალათის მონაცემების ჩამოტვირთვა და ჩვენება
+// ====================================================
+// კალათის ჩამოტვირთვა
+// ====================================================
 async function getCart() {
   if (!token) return;
 
@@ -33,7 +48,7 @@ async function getCart() {
     const data = await response.json();
 
     if (response.ok) {
-      renderCart(data);
+      await renderCart(data);
       updateGlobalBadge(data.total.quantity);
     } else {
       if (cartProducts) cartProducts.innerHTML = "<p>Cart is empty</p>";
@@ -44,8 +59,12 @@ async function getCart() {
   }
 }
 
-// კალათის ვიზუალური დახატვა
-function renderCart(data) {
+// ====================================================
+// კალათის დახატვა
+// async-ია რადგან getProductById-ს ელოდება
+// Promise.all - ყველა პროდუქტის ინფო პარალელურად მოაქვს 
+// ====================================================
+async function renderCart(data) {
   if (!cartSummary || !cartProducts) return;
 
   cartSummary.innerHTML = `
@@ -54,70 +73,91 @@ function renderCart(data) {
     <p>Quantity: ${data.total.quantity}</p>
   `;
 
+  cartProducts.innerHTML = "<p>იტვირთება...</p>";
+
+  // Promise.all - ყველა ID-სთვის პარალელურად ვიძახებთ API-ს
+  const productDetails = await Promise.all(
+    data.products.map(item => getProductById(item.productId))
+  );
+
   cartProducts.innerHTML = "";
 
-  data.products.forEach((product) => {
+  // data.products[i] = კალათის ელემენტი (qty, price)
+  // productDetails[i] = სრული ინფო (title, thumbnail)
+  // index-ით ვუთავსებთ
+  data.products.forEach((item, index) => {
+    const details = productDetails[index];
+
+    // თუ API-მ ვერ დააბრუნა - fallback
+    const title = details?.title || item.productId;
+    const thumbnail = details?.thumbnail || "";
+
     cartProducts.innerHTML += `
-      <div class="cart-item" id="item-${product.productId}">
-        <div class="cart-actions">
-          <button onclick="deleteItem('${product.productId}')">❌</button>
-          <button>✏️</button>
+      <div class="cart-item" id="item-${item.productId}">
+   <div class="cart-actions">
+          <button onclick="deleteItem('${item.productId}')">❌</button>
         </div>
-        <p class="product-name">${product.title || product.productId}</p>
+
+        ${thumbnail
+          ? `<img src="${thumbnail}" alt="${title} class="cartImage"
+               style="width:150px;height:150px;object-fit:contain;border-radius:8px;">`
+          : ""
+        }
+
+     
+        <p class="product-name">${title}</p>
+
         <div class="cart-item__quantity">
+    
           <button class="cartBtn"
-            onclick="updateQuantity('${product.productId}', ${product.quantity - 1})">-</button>
-          <span>${product.quantity}</span>
+            onclick="updateQuantity('${item.productId}', ${item.quantity - 1})">-</button>
+          <span>${item.quantity}</span>
           <button class="cartBtn"
-            onclick="updateQuantity('${product.productId}', ${product.quantity + 1})">+</button>
+            onclick="updateQuantity('${item.productId}', ${item.quantity + 1})">+</button>
         </div>
-        <p>${product.pricePerQuantity} <span class="value">USD</span></p>
-        <p>${product.quantity * product.pricePerQuantity} <span class="value">USD</span></p>
+        <div class="perPrice"> 
+        <p class="cartPrice" >Unit price</p> 
+        <p>${item.pricePerQuantity} <span class="value">USD</span></p>
+        </div>
+        <div class = "totalPrice"> 
+        <p class="cartPrice"> Total price </p>
+        <p>${item.quantity * item.pricePerQuantity} <span class="value">USD</span></p>
+        </div>
       </div>
     `;
   });
 }
 
 // ====================================================
-// კალათაში დამატება - გასწორებული ვერსია
+// კალათაში დამატება
 // ====================================================
-
-// პროდუქტის კალათაში დამატება ID-ით
 async function addToCart(productId) {
   const token = sessionStorage.getItem("accessToken");
 
-  // თუ არ არის logged in - გადამისამართება
   if (!token) {
     alert("Please sign in first");
     window.location.href = "logIn_index.html";
     return;
   }
 
-  // ჯერ ვამოწმებთ კალათის მდგომარეობას
   const cart = await getCartData();
 
   if (!cart || !cart.products) {
-    // კალათა ცარიელია - POST მეთოდი
     await sendCartRequest("POST", productId, 1);
     return;
   }
 
-  // ვეძებთ პროდუქტს კალათაში
   const existingProduct = cart.products.find((p) => p.productId === productId);
 
   if (existingProduct) {
-    // პროდუქტი უკვე კალათაშია - რაოდენობა გავზარდოთ
     await sendCartRequest("PATCH", productId, existingProduct.quantity + 1);
   } else if (cart.products.length > 0) {
-    // კალათა არ არის ცარიელი მაგრამ ეს პროდუქტი არ არის - PATCH
     await sendCartRequest("PATCH", productId, 1);
   } else {
-    // კალათა სრულიად ცარიელია - POST
     await sendCartRequest("POST", productId, 1);
   }
 }
 
-// API-სთვის მოთხოვნის გაგზავნა (POST ან PATCH)
 async function sendCartRequest(method, productId, quantity) {
   const token = sessionStorage.getItem("accessToken");
 
@@ -151,31 +191,26 @@ async function sendCartRequest(method, productId, quantity) {
   }
 }
 
-// კალათის მიმდინარე მდგომარეობის წამოღება
-// გასწორება: ადრე ორჯერ იძახდა .json()-ს რაც ანგრევდა ყველაფერს!
+
 async function getCartData() {
   const token = sessionStorage.getItem("accessToken");
 
   try {
     const response = await fetch("https://api.everrest.educata.dev/shop/cart", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
-    // .json() მხოლოდ ერთხელ გამოვიძახოთ!
     const data = await response.json();
-
-    if (response.ok) {
-      return data; // ← გასწორება: ადრე response.json() ორჯერ იძახდა
-    }
+    if (response.ok) return data;
     return null;
   } catch {
     return null;
   }
 }
 
+// ====================================================
 // რაოდენობის განახლება
+// ====================================================
 async function updateQuantity(productId, newQuantity) {
   if (newQuantity <= 0) {
     deleteItem(productId);
@@ -198,7 +233,7 @@ async function updateQuantity(productId, newQuantity) {
     const data = await response.json();
 
     if (response.ok) {
-      renderCart(data);
+      await renderCart(data);
       updateGlobalBadge(data.total.quantity);
     }
   } catch (error) {
@@ -206,7 +241,9 @@ async function updateQuantity(productId, newQuantity) {
   }
 }
 
-// პროდუქტის წაშლა კალათიდან
+// ====================================================
+// წაშლა
+// ====================================================
 async function deleteItem(productId) {
   try {
     const response = await fetch(
@@ -224,7 +261,7 @@ async function deleteItem(productId) {
     const data = await response.json();
 
     if (response.ok) {
-      renderCart(data);
+      await renderCart(data);
       updateGlobalBadge(data.total.quantity);
     }
   } catch (error) {
@@ -232,14 +269,14 @@ async function deleteItem(productId) {
   }
 }
 
-// კალათის სრული გასუფთავება
+// ====================================================
+// გასუფთავება
+// ====================================================
 async function clearCart() {
   try {
     const response = await fetch("https://api.everrest.educata.dev/shop/cart", {
       method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
     const data = await response.json();
@@ -254,16 +291,16 @@ async function clearCart() {
   }
 }
 
+// ====================================================
 // Checkout
+// ====================================================
 async function checkout() {
   try {
     const response = await fetch(
       "https://api.everrest.educata.dev/shop/cart/checkout",
       {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
 
@@ -283,19 +320,16 @@ async function checkout() {
 }
 
 // ====================================================
-// BADGE - კალათის რაოდენობის ბეიჯი header-ში
+// BADGE
+// querySelectorAll - desktop და mobile ორივეს ანახლებს
 // ====================================================
-
-const globalCartCount = document.querySelector(".global-cart-count");
-
-// badge-ის განახლება ყველა გვერდზე
 function updateGlobalBadge(quantity) {
-  if (globalCartCount) {
-    globalCartCount.textContent = quantity;
-  }
+  const badges = document.querySelectorAll(".global-cart-count");
+  badges.forEach(badge => {
+    badge.textContent = quantity;
+  });
 }
 
-// გვერდის ჩატვირთვისას badge-ის განახლება
 async function loadCartBadge() {
   const token = sessionStorage.getItem("accessToken");
   if (!token) return;
@@ -304,43 +338,37 @@ async function loadCartBadge() {
     const response = await fetch("https://api.everrest.educata.dev/shop/cart", {
       headers: { Authorization: `Bearer ${token}` },
     });
-
     const data = await response.json();
-
-    if (response.ok) {
-      updateGlobalBadge(data.total.quantity);
-    }
+    if (response.ok) updateGlobalBadge(data.total.quantity);
   } catch (error) {
     console.log(error);
   }
 }
 
 // ====================================================
-// Event Listeners - cart გვერდზე მხოლოდ
+// Event Listeners
 // ====================================================
-
-// checkoutBtn და clearCartBtn მხოლოდ cart.html-ზე არსებობს
 const checkoutBtn = document.getElementById("checkoutBtn");
 const clearCartBtn = document.getElementById("clearCartBtn");
 const applyBtn = document.querySelector(".applyBtn");
-const applyInput=document.querySelector(".applyInput")
+const applyInput = document.querySelector(".applyInput");
+
 if (checkoutBtn) checkoutBtn.addEventListener("click", checkout);
 if (clearCartBtn) clearCartBtn.addEventListener("click", clearCart);
-if (applyBtn) applyBtn.addEventListener("click", () =>{
- const code = applyInput.value.trim(); // trim() - ცარიელი სფეისების მოსაშორებლად
-  if (code) {
-    alert("Code applied successfully!");
-  } else {
-    alert("გთხოვთ შეიყვანოთ პრომო კოდი");
-  }
-} );
+if (applyBtn) {
+  applyBtn.addEventListener("click", () => {
+    const code = applyInput?.value.trim();
+    if (code) {
+      alert("Code applied successfully! ✅");
+    } else {
+      alert("გთხოვთ შეიყვანოთ პრომო კოდი");
+    }
+  });
+}
 
-// გვერდის ჩატვირთვისას
 window.addEventListener("DOMContentLoaded", () => {
   loadCartBadge();
-  // კალათა მხოლოდ cart გვერდზე ჩაიტვირთოს
   if (token && cartProducts && cartSummary) {
     getCart();
   }
 });
-
