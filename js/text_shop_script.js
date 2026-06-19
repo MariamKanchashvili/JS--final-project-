@@ -255,41 +255,6 @@ async function searchProducts() {
     }
 }
 
-// ==========================
-// HEADER LIVE SEARCH
-// ==========================
-searchInputHeader.addEventListener("input", async (e) => {
-    const keyword = e.target.value.trim()
-
-    if (keyword.length < 2) {
-        searchList.innerHTML = ""
-        searchList.style.display = "none"
-        return
-    }
-
-    const res = await fetch(
-        `https://api.everrest.educata.dev/shop/products/search?keywords=${keyword}`
-    )
-
-    const data = await res.json()
-
-    searchList.innerHTML = ""
-
-    data.products.forEach(product => {
-        const item = document.createElement("div")
-        item.classList.add("search-item")
-
-        item.innerHTML = `
-            <img src="${product.thumbnail}" width="50">
-            <span>${product.title}</span>
-        `
-
-        searchList.appendChild(item)
-    })
-
-    searchList.style.display = "block"
-})
-
 
 
 // ==========================

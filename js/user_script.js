@@ -248,20 +248,7 @@ const response = await fetch("https://api.everrest.educata.dev/auth/change_passw
   }
 }
 
-// log out
 
-const logoutBtn = document.getElementById("logotBtn");
-logoutBtn.addEventListener("click", logout);
-async function logout(event) {
-  event.preventDefault();
-  const firstName = document.getElementById("currentUser-firstname")?.value || "User";
-  sessionStorage.removeItem("accessToken");
-  sessionStorage.removeItem("refreshToken");
-
-  alert(`Successfully logged out, Good bye, ${firstName}`);
-
-  window.location.href = "logIn_index.html";
-}
 
 // Delete
 
