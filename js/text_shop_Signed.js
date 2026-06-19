@@ -289,3 +289,17 @@ searchInputHeader.addEventListener("input", async (e) => {
 
     searchList.style.display = "block"
 })
+// filter reset btn 
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+    searchInputAside.value = ""
+    brands.value = ""
+    ratingSelect.value = ""
+    minPriceInput.value = ""
+    maxPriceInput.value = ""
+    sortBySelect.value = ""
+    sortDirSelect.value = "asc"
+    currentCategory = null
+    currentPage = 1
+    getProducts(1)
+})
