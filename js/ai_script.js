@@ -1,7 +1,7 @@
 
 
 // შენი API Key - მხოლოდ ტესტისთვის!
-const AI_API_KEY = "key-აქ";
+const AI_API_KEY = "key აქ";
 
 // ჩატი ღიაა თუ დახურული
 let isChatOpen = false;
