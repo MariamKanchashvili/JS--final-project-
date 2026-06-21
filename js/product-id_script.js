@@ -1,12 +1,6 @@
-// ვიღებთ კონტეინერს სადაც პროდუქტი უნდა ჩაიხატოს
+
 const pageItems = document.getElementById("productDetails");
-
-// URL-დან ვიღებთ id-ს
-// მაგალითად:
-// productById.html?id=64edc5b96ad1cbae75d3025a
-
 const params = new URLSearchParams(window.location.search);
-
 const id = params.get("id");
 
 console.log("PRODUCT ID:", id);
@@ -32,7 +26,7 @@ async function getPageId(id) {
 
         console.log("PRODUCT DATA:", data);
 
-        // პროდუქტის დახატვა
+        // პროდუქტის დამატება
         pageItems.innerHTML = printPageId(data);
       const stars = document.querySelectorAll(".star");
 

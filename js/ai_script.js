@@ -1,5 +1,4 @@
 
-
 // შენი API Key - მხოლოდ ტესტისთვის!
 const AI_API_KEY = "";
 
@@ -274,7 +273,7 @@ function addMessage(container, text, type) {
 }
 
 // ====================================================
-// CSS სტილები - პირდაპირ JS-ში რომ ცალკე CSS არ დაგჭირდეს
+// CSS სტილები
 // ====================================================
 function addChatStyles() {
   const style = document.createElement("style");
