@@ -123,7 +123,13 @@ z-index: 9999;
     color: red;
     font-weight: bolder;
 }
-
+.in-stock{
+    color: green;
+    font-weight: bolder;
+}
+.rating{
+    font-size: 21px;
+}
 @media screen and (max-width:1100px){
     .header{
 .header__mobile-user-icon{
@@ -203,7 +209,7 @@ z-index: 9999;
 }
 @media screen and (max-width:480px){
    .productDetails_category-image{
-    max-width: 380px;
+    max-width: 200px;
     width: 100%;
    } 
    .currentProduct{

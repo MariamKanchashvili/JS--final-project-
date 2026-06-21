@@ -113,6 +113,20 @@
   display: flex !important;
 }
 
+.no-stock {
+  color: red;
+  font-weight: bolder;
+}
+
+.in-stock {
+  color: green;
+  font-weight: bolder;
+}
+
+.rating {
+  font-size: 21px;
+}
+
 @media screen and (max-width: 1100px) {
   .header__signup {
     display: none;
@@ -163,7 +177,7 @@
 }
 @media screen and (max-width: 480px) {
   .productDetails_category-image {
-    max-width: 380px;
+    max-width: 200px;
     width: 100%;
   }
 }/*# sourceMappingURL=notSigned-productId.css.map */
