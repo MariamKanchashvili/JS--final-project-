@@ -7,7 +7,7 @@ async function getCurrentUser() {
 
     // თუ token არ არსებობს
     if (!token) {
-      alert("Please Sign In First  ");
+      showAlert("Please Sign In First  ");
       window.location.href = "logIn_index.html";
       console.log("No token found")
 
@@ -59,7 +59,7 @@ async function getCurrentUser() {
         ? "✅"
         : "❌";
     } else {
-      alert(data.message);
+      showAlert(data.message);
     }
   } catch (error) {
     console.log(error);
@@ -75,7 +75,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     const firstName = document.getElementById("currentUser-firstname").value;
 
-    alert(`Hello, ${firstName}`);
+    showAlert(`Hello, ${firstName}`);
   }
 });
 
@@ -105,16 +105,16 @@ async function verifyEmail(event) {
     const data = await res.json();
 
     if (res.ok) {
-      alert(data.message);
+      showAlert(data.message);
       sessionStorage.setItem("verify", JSON.stringify(data));
       getCurrentUser()
     } else {
-      alert("Something went wrong");
+      showAlert("Something went wrong");
     }
     console.log(data);
   } catch (error) {
     console.error(error);
-    alert("Server error");
+    showAlert("Server error");
   }
 }
 
@@ -157,13 +157,13 @@ console.log(userUpdateData);
   const data = await response.json();
   console.log(data)
   if (response.ok) {
-    alert("User updated successfully");
+    showAlert("User updated successfully");
 
     document.getElementById("updateData-form").reset();
     getCurrentUser();
   } else {
     console.log("error");
-    alert("Update User issue")
+    showAlert("Update User issue")
   }
   console.log(data);
 }
@@ -196,13 +196,13 @@ async function recoverPassword(event) {
         const data = await response.json()
 
         if (response.ok) {
-            alert(data.message)
+            showAlert(data.message)
         } else {
-            alert("Something went wrong")
+            showAlert("Something went wrong")
         }
     } catch (error) {
         console.log(error)
-        alert("Server error")
+        showAlert("Server error")
     }
 }
 
@@ -238,13 +238,13 @@ const response = await fetch("https://api.everrest.educata.dev/auth/change_passw
       sessionStorage.setItem("accessToken", data.access_token);
 
       sessionStorage.setItem("refreshToken", data.refresh_token);
-      alert("Password changed successfully");
+      showAlert("Password changed successfully");
     } else {
-      alert("Something went wrong ,password change problem");
+      showAlert("Something went wrong ,password change problem");
     }
   } catch (error) {
     console.log(error);
-    alert("Server error");
+    showAlert("Server error");
   }
 }
 
@@ -261,7 +261,7 @@ async function deleteAccount() {
     const token = sessionStorage.getItem("accessToken");
 
     if (!token) {
-      alert("No token found. Please log in again.");
+      showAlert("No token found. Please log in again.");
       return;
     }
 
@@ -282,11 +282,11 @@ async function deleteAccount() {
     console.log(data);
 
     if (!response.ok) {
-      alert(data.message || "Delete failed");
+      showAlert(data.message || "Delete failed");
       return;
     }
 
-    alert("Account deleted successfully");
+    showAlert("Account deleted successfully");
 
 sessionStorage.removeItem("accessToken");
 sessionStorage.removeItem("refreshToken");
@@ -294,6 +294,6 @@ sessionStorage.removeItem("refreshToken");
 
   } catch (error) {
     console.log("delete account Error", error);
-    alert("Delete account issue");
+    showAlert("Delete account issue");
   }
 }

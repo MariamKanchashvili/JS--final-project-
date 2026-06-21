@@ -135,7 +135,7 @@ async function addToCart(productId) {
   const token = sessionStorage.getItem("accessToken");
 
   if (!token) {
-    alert("Please sign in first");
+    showAlert("Please sign in first");
     window.location.href = "logIn_index.html";
     return;
   }
@@ -177,14 +177,14 @@ async function sendCartRequest(method, productId, quantity) {
     const data = await response.json();
 
     if (response.ok) {
-      alert("Product added to cart ✅");
+      showAlert("Product added to cart ✅");
       if (data.total) {
         updateGlobalBadge(data.total.quantity);
       } else {
         getCart();
       }
     } else {
-      alert("Failed to add product ❌");
+     showAlert("Failed to add product ❌,please sign in ");
     }
   } catch (error) {
     console.log(error);
@@ -307,12 +307,12 @@ async function checkout() {
     const data = await response.json();
 
     if (response.ok) {
-      alert(data.message);
+      showAlert(data.message);
       if (cartProducts) cartProducts.innerHTML = "<p>Cart is empty</p>";
       if (cartSummary) cartSummary.innerHTML = "";
       updateGlobalBadge(0);
     } else {
-      alert("Checkout failed");
+      showAlert("Checkout failed");
     }
   } catch (error) {
     console.log(error);
@@ -359,9 +359,9 @@ if (applyBtn) {
   applyBtn.addEventListener("click", () => {
     const code = applyInput?.value.trim();
     if (code) {
-      alert("Code applied successfully! ✅");
+      showAlert("Code applied successfully! ✅");
     } else {
-      alert("გთხოვთ შეიყვანოთ პრომო კოდი");
+      showAlert("გთხოვთ შეიყვანოთ პრომო კოდი");
     }
   });
 }

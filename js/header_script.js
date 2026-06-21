@@ -29,8 +29,10 @@ const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
 function logout() {
     sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("refreshToken");
-    alert("Successfully logged out!");
-    window.location.href = "logIn_index.html";
+    showAlert("Successfully logged out! 👋");
+   setTimeout(() => {
+        window.location.href = "logIn_index.html";
+    }, 1500);
 }
 
 // if-ებია რადგან unsigned გვერდებზე ეს ღილაკები არ არსებობს

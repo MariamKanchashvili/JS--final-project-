@@ -22,12 +22,12 @@ async function recoverPassword(event) {
         const data = await response.json()
 
         if (response.ok) {
-            alert(data.message)
+            showAlert(data.message)
         } else {
-            alert("Something went wrong")
+            showAlert("Something went wrong")
         }
     } catch (error) {
         console.log(error)
-        alert("Server error")
+        showAlert("Server error")
     }
 }

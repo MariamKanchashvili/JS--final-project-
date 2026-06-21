@@ -19,10 +19,10 @@ async function signIn(event) {
 
 if(res.ok){
     sessionStorage.setItem("accessToken", data.access_token) 
-    alert("Signed in")
+    showAlert("Signed in")
     window.location.href = "user_index.html" 
 }else{
-    alert("You are not registered! please sign up first")
+    showAlert("You are not registered! please sign up first")
 }
   console.log(data)
 

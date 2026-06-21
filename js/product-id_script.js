@@ -190,7 +190,7 @@ async function rateProduct(productId, rate) {
         const token = sessionStorage.getItem("accessToken");
 
         if (!token) {
-            alert("Please login first");
+            showAlert("Please login first");
               window.location.href = "logIn_index.html";
             return;
         }
@@ -219,12 +219,12 @@ async function rateProduct(productId, rate) {
             throw new Error(data.message);
         }
 
-        alert("Rating submitted!");
+        showAlert("Rating submitted!");
 
     } catch (error) {
 
         console.log("Rate Error:", error);
-        alert("Rating failed");
+        showAlert("Rating failed");
 
     }
 

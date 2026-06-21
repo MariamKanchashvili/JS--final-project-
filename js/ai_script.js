@@ -1,7 +1,7 @@
 
 
 // შენი API Key - მხოლოდ ტესტისთვის!
-const AI_API_KEY = "key აქ";
+const AI_API_KEY = "key";
 
 // ჩატი ღიაა თუ დახურული
 let isChatOpen = false;
@@ -241,7 +241,7 @@ async function addToCartFromChat(productId, productTitle, button) {
     button.style.background = "#16a34a";
   } else {
     // cart_script.js არ არის - გადავამისამართოთ login გვერდზე
-    alert("გთხოვთ გაიაროთ ავტორიზაცია კალათის გამოსაყენებლად");
+    showAlert("გთხოვთ გაიაროთ ავტორიზაცია კალათის გამოსაყენებლად");
     button.disabled = false;
     button.textContent = `🛒 კალათაში დამატება: ${productTitle}`;
   }

@@ -31,11 +31,11 @@ gender:document.querySelector('input[name="gender"]:checked')?.value,
 
   const data= await res.json()
   if(res.ok){
-    alert("Signed up");
+    showAlert("Signed up");
      window.location.href =
     "logIn_index.html"
 }else{
-    alert("Something went wrong");
+    showAlert("Something went wrong");
 }
   console.log(data)
    

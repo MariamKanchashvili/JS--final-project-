@@ -7,7 +7,7 @@ async function logout(event) {
   sessionStorage.removeItem("accessToken");
   sessionStorage.removeItem("refreshToken");
 
-  alert("Successfully logged out");
+  showAlert("Successfully logged out");
 
   window.location.href = "logIn_index.html";
 }
