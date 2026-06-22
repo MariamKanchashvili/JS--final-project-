@@ -189,7 +189,7 @@ async function rateProduct(productId, rate) {
       window.location.href = "logIn_index.html";
     }, 1500);
     return;
-            return;
+          
         }
 
         const response = await fetch(
