@@ -134,11 +134,17 @@ async function renderCart(data) {
 async function addToCart(productId) {
   const token = sessionStorage.getItem("accessToken");
 
+  
+
   if (!token) {
-    showAlert("Please sign in first");
-    window.location.href = "logIn_index.html";
+   
+    showAlert("Please log in to use the cart.", "info");
+    setTimeout(() => {
+      window.location.href = "logIn_index.html";
+    }, 1500);
     return;
   }
+  
 
   const cart = await getCartData();
 
