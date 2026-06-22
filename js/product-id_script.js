@@ -185,7 +185,10 @@ async function rateProduct(productId, rate) {
 
         if (!token) {
             showAlert("Please login first");
-              window.location.href = "logIn_index.html";
+            setTimeout(() => {
+      window.location.href = "logIn_index.html";
+    }, 1500);
+    return;
             return;
         }
 

@@ -20,7 +20,12 @@ async function signIn(event) {
 if(res.ok){
     sessionStorage.setItem("accessToken", data.access_token) 
     showAlert("Signed in")
-    window.location.href = "user_index.html" 
+  setTimeout(() => {
+    window.location.href = "user_index.html" ;
+    }, 1500);
+    return;
+    
+
 }else{
     showAlert("You are not registered! please sign up first")
 }
