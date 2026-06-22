@@ -434,11 +434,38 @@ function addChatStyles() {
 
     /* მობილური */
     @media (max-width: 480px) {
-      #ai-chat-window {
-        width: calc(100vw - 32px);
-        right: -8px;
-      }
-    }
+  #ai-chat-widget {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  #ai-chat-window {
+    width: calc(100vw - 32px);
+    right: -8px;
+    bottom: 75px;
+  }
+
+  #ai-chat-toggle {
+    width: 52px;
+    height: 52px;
+  }
+
+  #ai-chat-messages {
+    height: 250px;
+  }
+}
+
+@media (max-width: 380px) {
+  #ai-chat-window {
+    width: calc(100vw - 20px);
+    right: -4px;
+  }
+
+  #ai-chat-input {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
   `;
   document.head.appendChild(style);
 }
