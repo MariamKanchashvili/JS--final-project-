@@ -411,9 +411,11 @@ z-index: 9999;
 }
 
 }
+@media screen and (max-width:1245px){
+     .gender-input input[type=radio]:checked:after {top: 8px;}
+}
 
-
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 940px) {
     .user_page {
         padding-left: 20px;
         padding-right: 20px; 
@@ -473,6 +475,7 @@ z-index: 9999;
         min-width: unset; 
         width: 100%;
     }
+   
 }
 @media screen and (max-width: 380px) {
     .user_page {

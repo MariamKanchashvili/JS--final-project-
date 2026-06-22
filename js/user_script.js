@@ -282,7 +282,7 @@ async function deleteAccount() {
     console.log(data);
 
     if (!response.ok) {
-      showAlert(data.message || "Delete failed");
+      showAlert(data.message || "Delete failed","error");
       return;
     }
 
@@ -290,7 +290,10 @@ async function deleteAccount() {
 
 sessionStorage.removeItem("accessToken");
 sessionStorage.removeItem("refreshToken");
-    window.location.href = "signUp_index.html";
+  showAlert("Account deleted successfully ✅");
+    setTimeout(() => {
+      window.location.href = "signUp_index.html";
+    }, 1500);
 
   } catch (error) {
     console.log("delete account Error", error);
