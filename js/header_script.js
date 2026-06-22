@@ -121,13 +121,36 @@ if (searchInputHeader && searchList) {
     });
 
     // ძებნის ღილაკზე დაჭერა
-    if (searchBtn) {
-        searchBtn.addEventListener("click", () => {
-            const keyword = searchInputHeader.value.trim();
-            performSearch(keyword);
-        });
-    }
+if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+        const keyword = searchInputHeader.value.trim();
 
+        if (typeof renderProducts === "function") {
+            if (!keyword) {
+                // თუ ცარიელია - ყველა პროდუქტი დაბრუნდეს
+                getProducts();
+                searchList.innerHTML = "";
+                searchList.style.display = "none";
+                return;
+            }
+
+            fetch(`https://api.everrest.educata.dev/shop/products/search?keywords=${keyword}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (!data.products || data.products.length === 0) {
+                        showAlert("პროდუქტი ვერ მოიძებნა", "info");
+                        return;
+                    }
+                    renderProducts(data.products); // ← carousel-ს ხატავს
+                    initAutoCarousel();             // ← carousel-ს ხელახლა იწყებს!
+                    searchList.innerHTML = "";
+                    searchList.style.display = "none";
+                });
+        } else {
+            performSearch(keyword);
+        }
+    });
+}
     // Enter კლავიშზეც მუშაობს
     searchInputHeader.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
